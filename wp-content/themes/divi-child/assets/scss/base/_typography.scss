@@ -1,0 +1,59 @@
+@use 'abstracts/variables' as *;
+@use 'abstracts/fonts' as *;
+
+body {
+  font-family: $font-primary;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li, span, div {
+  font-family: $font-primary;
+}
+
+h1{
+    font-family: $font-primary;
+    font-size: $fs-16;
+    font-style: normal;
+    font-weight: 400;
+    line-height: $lh-auto;
+
+    &.light {
+        color: $white;
+    }
+    &.dark {
+        color: $black;
+    }
+
+}
+
+.hero-tagline {
+    color: $white;
+    font-family: $font-primary;
+    font-size: $fs-15;
+    font-style: normal;
+    font-weight: 400;
+    line-height: $lh-auto;
+}
+
+.section-title,
+h2,
+.fs-50
+{
+        font-size: $fs-50;
+        font-style: normal;
+        font-weight: 700;
+        line-height: $lh-60;
+}
+
+h3{
+font-size: $fs-30;
+font-style: normal;
+font-weight: 700;
+line-height: $lh-60; /* 200% */
+}
+
+h4{
+font-size: $fs-20;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}

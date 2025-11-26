@@ -1,0 +1,135 @@
+@use 'abstracts/variables' as *;
+
+/* ============================================
+   Styles for grid_section section
+   ============================================ */
+.grid-section {
+  background: $gray-150;
+  padding-top: 32.5px;
+  padding-bottom: 67.5px;
+
+  .container {
+    h2 {
+      text-align: center;
+    }
+    .section-description {
+      text-align: center;
+      font-size: $fs-20;
+      font-weight: 400;
+      line-height: $lh-60;
+    }
+    
+    &.btn-wrapper{
+      margin-top: 33px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+  }
+
+  /* --- base grid --- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 404px; // base row height
+    grid-auto-flow: dense;
+  }
+
+  /* --- base item --- */
+  .item {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    
+
+    /* video layer */
+    .bg-video img,
+    .bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+
+
+    /* overlay layer */
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 30px;
+      background: rgba(35, 31, 32, 0.8); // fixed overlay #231F20 @ 20%
+      transition: opacity 0.4s ease;
+      z-index: 3;
+      /* logo layer */
+      .logo-wrapper {
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        transition: opacity 0.4s ease;
+
+        img {
+          width: auto;
+        }
+      }
+      h3 {
+        font-size: 1rem;
+        line-height: 1.3;
+        padding: 0;
+        margin: 0;
+        color: $orange;
+        z-index: 1;
+      }
+    }
+
+    /* hover behaviour */
+    &:hover {
+  .overlay {
+    background: transparent; // remove dark overlay if desired
+    .logo-wrapper {
+      opacity: 0;
+    }
+    h3 {
+      opacity: 1;
+    }
+  }
+}
+
+    /* --- size rules --- */
+    &.small { grid-column: span 2; grid-row: span 1; }
+    &.half  { grid-column: span 3; grid-row: span 1; }
+    &.wide  { grid-column: span 4; grid-row: span 1; }
+    &.tall  { grid-column: span 2; grid-row: span 2; }
+  }
+
+  /* --- responsive collapse --- */
+  @media (max-width: 992px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 200px;
+    }
+
+    .item {
+      grid-column: span 1 !important;
+      grid-row: span 1 !important;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 180px;
+    }
+  }
+}

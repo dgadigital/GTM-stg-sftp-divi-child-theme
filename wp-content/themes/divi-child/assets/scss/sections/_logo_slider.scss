@@ -1,0 +1,42 @@
+@use 'abstracts/variables' as *;
+
+/* Styles for logo_slider section */
+.logo-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 54px 0;
+    
+    &.dark{
+        background-color: $dark;
+    }
+    &.light{
+        background-color: $white;
+    }
+
+.container{
+    .logoslider{
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+        margin: 0;
+        gap: 25px;
+        .slick-list{
+            .slick-track{
+            
+                .logo-slide{
+                    display: flex!important;
+                    justify-content: center!important;
+                    align-items: center!important;
+                    height: 103px;
+                    margin: 36px 0;
+
+                }
+
+            }
+        }
+          
+    }
+}
+}

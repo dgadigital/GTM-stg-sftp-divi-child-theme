@@ -1,22 +1,33 @@
 # Ignore everything
 *
 
-# Allow .gitignore itself
+# Allow this file to always be tracked
 !.gitignore
 
-# Allow only wp-content folder
+############ WP-CONTENT FILTER ############
+
+# Allow wp-content directory itself
 !wp-content/
+
+# Ignore everything in wp-content unless allowed later
 wp-content/*
 
-# Allow only themes folder inside wp-content
+# Allow themes folder
 !wp-content/themes/
+
+# Ignore everything inside themes except divi-child
 wp-content/themes/*
 
-# Allow only divi-child theme
+# ⭐ REQUIRED — allow the folder itself
 !wp-content/themes/divi-child/
+
+# Allow ALL FILES inside divi-child
+!wp-content/themes/divi-child/**
+
+###########################################
 
 # Ignore node_modules inside divi-child
 wp-content/themes/divi-child/node_modules/
 
-# Allow .vscode at root
+# Allow vscode config
 !.vscode/
