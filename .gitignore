@@ -1,0 +1,22 @@
+# Ignore everything
+*
+
+# Allow .gitignore itself
+!.gitignore
+
+# Allow only wp-content folder
+!wp-content/
+wp-content/*
+
+# Allow only themes folder inside wp-content
+!wp-content/themes/
+wp-content/themes/*
+
+# Allow only divi-child theme
+!wp-content/themes/divi-child/
+
+# Ignore node_modules inside divi-child
+wp-content/themes/divi-child/node_modules/
+
+# Allow .vscode at root
+!.vscode/
