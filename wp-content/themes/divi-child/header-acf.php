@@ -5,38 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php wp_head(); ?>
   
-  <style>
-  .dropdown-wrapper .btn-primary {
-position: absolute;
-    right: 20px;
-    top: 40px;
-}
-
-nav .navbar-logo img {
-    height: auto !important;
-    width: auto !important;
-}
-
-nav .nav-link {font-size:14px;}
-@media (min-width: 992px) and (max-width: 1464px) {
-.leadership-fullwidth-automatic-slider .members .member .member-inner .member-text-wrapper .member-text-wrapper-top .member-position {font-size:17px;}
-}
-@media (min-width: 992px) and (max-width: 1464px) {
-.navbar-nav .nav-link {font-size: 11px;}
-.navbar #menu-left.navbar-nav {width:100%}
-.navbar #menu-right.navbar-nav {width:100%}
-.nav-container {width:100%;}
-
-  .dropdown-wrapper .btn-primary {
-position: absolute;
-    right: 20px;
-    top: 84px;
-}
-.navbar-right .menu-right-wrapper {width:100%;padding-right:20px;}
-
-}
-
-  </style>
 </head>
 
 <body <?php body_class(); ?>>

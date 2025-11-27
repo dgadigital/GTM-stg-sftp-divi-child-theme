@@ -53,7 +53,10 @@ overflow: hidden;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      row-gap: 80px;
       .member {
+        display: flex;
+        flex-direction: column;
         width: calc(25% - 7.5px);
         flex: 0 0 calc(25% - 7.5px);
 
@@ -75,9 +78,15 @@ overflow: hidden;
             flex-direction: column;
             gap: 22px;
             .image-wrapper{
-                .icon{
+                width: 100%;
+                overflow: hidden;
+
+                img,
+                picture.icon{
                     width: 100%;
                     height: auto;
+                    display: 
+                    block;
                 }
             }
             .member-text-wrapper{
