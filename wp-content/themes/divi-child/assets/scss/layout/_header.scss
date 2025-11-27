@@ -92,6 +92,9 @@ nav {
   
 }
 .navbar{
+  *{
+  outline: 1px solid blue;
+}
 .navbar-nav{
   @media (min-width: 992px) {
     display: flex;
@@ -423,3 +426,4 @@ position: absolute;
 .navbar-right .menu-right-wrapper {width:100%;padding-right:20px;}
 
 }
+

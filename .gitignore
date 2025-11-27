@@ -1,33 +1,28 @@
 # Ignore everything
 *
-
-# Allow this file to always be tracked
 !.gitignore
 
-############ WP-CONTENT FILTER ############
+############ ROOT HTML #################
+!/*.html
 
-# Allow wp-content directory itself
+############ WP-CONTENT #################
 !wp-content/
-
-# Ignore everything in wp-content unless allowed later
 wp-content/*
 
-# Allow themes folder
+### THEMES ###
 !wp-content/themes/
-
-# Ignore everything inside themes except divi-child
 wp-content/themes/*
-
-# ⭐ REQUIRED — allow the folder itself
 !wp-content/themes/divi-child/
-
-# Allow ALL FILES inside divi-child
 !wp-content/themes/divi-child/**
 
-###########################################
+### UPLOADS — Track ONLY 2025/11 ###
+!wp-content/uploads/
+wp-content/uploads/*
+!wp-content/uploads/2025/
+wp-content/uploads/2025/*
+!wp-content/uploads/2025/11/
+!wp-content/uploads/2025/11/**
 
-# Ignore node_modules inside divi-child
+### EXCLUSIONS ###
 wp-content/themes/divi-child/node_modules/
-
-# Allow vscode config
 !.vscode/

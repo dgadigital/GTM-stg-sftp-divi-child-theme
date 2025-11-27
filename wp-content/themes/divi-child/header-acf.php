@@ -5,6 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php wp_head(); ?>
   
+  <style>
+  .dropdown-wrapper .btn-primary {
+position: absolute;
+    right: 20px;
+    top: 40px;
+}
+
+nav .navbar-logo img {
+    height: auto !important;
+    width: auto !important;
+}
+
+nav .nav-link {font-size:14px;}
+@media (min-width: 992px) and (max-width: 1464px) {
+.leadership-fullwidth-automatic-slider .members .member .member-inner .member-text-wrapper .member-text-wrapper-top .member-position {font-size:17px;}
+}
+@media (min-width: 992px) and (max-width: 1464px) {
+.navbar-nav .nav-link {font-size: 11px;}
+.navbar #menu-left.navbar-nav {width:100%}
+.navbar #menu-right.navbar-nav {width:100%}
+.nav-container {width:100%;}
+
+  .dropdown-wrapper .btn-primary {
+position: absolute;
+    right: 20px;
+    top: 84px;
+}
+.navbar-right .menu-right-wrapper {width:100%;padding-right:20px;}
+
+}
+
+  </style>
 </head>
 
 <body <?php body_class(); ?>>
@@ -15,7 +47,7 @@ $locations = get_nav_menu_locations();
 ?>
 
 <!-- ==================== DESKTOP NAV ==================== -->
-<nav class="navbar navbar-expand-lg sticky-top d-none d-lg-flex">
+<nav class="desktop-nav navbar navbar-expand-lg sticky-top d-none d-lg-flex">
   <div class="nav-container d-flex align-items-center justify-content-between m-auto">
 
     <!-- LEFT MENU -->
@@ -72,7 +104,7 @@ $locations = get_nav_menu_locations();
 
 
 <!-- ==================== MOBILE NAV ==================== -->
-<nav class="navbar navbar-expand-lg sticky-top d-lg-none">
+<nav class="mobile-nav navbar navbar-expand-lg sticky-top d-lg-none">
   <div class="container-fluid d-flex flex-column align-items-stretch px-3">
 
     <!-- Top Row -->
