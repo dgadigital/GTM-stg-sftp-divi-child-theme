@@ -65,7 +65,18 @@
     border-color: $black;
   }
 }
-        }
+
+&.social{
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  .dark {
+      filter: brightness(0) invert(0) grayscale(1);
+  }
+}
+
+      }
 
 
 
