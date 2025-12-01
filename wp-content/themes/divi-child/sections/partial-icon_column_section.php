@@ -19,11 +19,15 @@ $font_color           = get_sub_field('font_color');           // Select (text-*
 $blocks               = get_sub_field('blocks');               // Repeater
 $content_source       = get_sub_field('content_source') ?: 'sectors'; // Select (default)
 $bottom_btn           = get_sub_field('bottom_btn');           // link
+$bottom_btn           = get_sub_field('bottom_btn');           // link
+$column_layout           = get_sub_field('column_layout');
+
+
 ?>
 
 <section
   id="<?= esc_attr($section_id); ?>"
-  class="icon-column-section section-<?= esc_attr($section_index); ?> <?= esc_attr($background_color . ' ' . $font_color); ?>"
+  class="icon-column-section section-<?= esc_attr($section_index); ?> <?= esc_attr($background_color . ' ' . $font_color . ' ' . $column_layout); ?>"
 >
   <div class="container">
     <div class="section-header d-flex justify-content-between align-items-start flex-column flex-lg-row">

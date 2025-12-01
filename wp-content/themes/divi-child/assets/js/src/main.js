@@ -520,3 +520,67 @@ jQuery(function ($) {
     });
 
 });
+
+
+
+
+
+jQuery(function ($) {
+
+  // OPEN FIRST ITEM ON LOAD
+  const $first = $(".accordion-item").first().find(".accordion-content");
+  const firstHeight = $first[0].scrollHeight;
+  $first.css("height", firstHeight + "px").addClass("show")
+        .prev(".accordion-header").addClass("open");
+
+
+  $(".accordion-header").on("click", function () {
+    const $header = $(this);
+    const $panel = $header.next(".accordion-content");
+    const $container = $header.closest(".accordion-container");
+
+    // close others
+    $container.find(".accordion-content.show").not($panel).each(function () {
+      slideUp($(this));
+      $(this).prev(".accordion-header").removeClass("open");
+    });
+
+    // toggle this one
+    if ($panel.hasClass("show")) {
+      slideUp($panel);
+      $header.removeClass("open");
+    } else {
+      slideDown($panel);
+      $header.addClass("open");
+    }
+  });
+
+
+function slideDown($el) {
+  $el.addClass("show");
+
+  // Step 1: get initial height
+  let startHeight = $el[0].scrollHeight;
+  $el.css("height", startHeight + "px");
+
+  // Step 2: wait for CSS padding transition to apply, then re-measure
+  setTimeout(() => {
+    let fullHeight = $el[0].scrollHeight;  // now includes padding
+    $el.css("height", fullHeight + "px");
+  }, 150); // tweak if needed (0.15s syncs perfectly with .35s ease)
+}
+
+
+  function slideUp($el) {
+    const height = $el[0].scrollHeight;
+    $el.css("height", height + "px");
+
+    requestAnimationFrame(() => {
+      $el.css("height", "0px");
+    });
+
+    $el.removeClass("show");
+  }
+
+});
+
