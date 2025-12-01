@@ -1,10 +1,9 @@
-<?php get_header('acf'); ?>
 <?php
 /**
  * Template Name: Flexible Content
- */
+ */?>
 
-
+<?php get_header('acf'); 
 $section_index = 1;
 
 
@@ -24,5 +23,6 @@ $section_index = 1;
             $section_index++;
         }
     }
-?>
-<?php get_footer('acf'); ?>
+
+
+get_footer('acf'); ?>

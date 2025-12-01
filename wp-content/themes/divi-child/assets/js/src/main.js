@@ -6,47 +6,18 @@ import 'slick-carousel';
 // ===============================================================
 // 🔥 Divi Scroll Hijacker Killer (FINAL WORKING VERSION)
 // ===============================================================
-window.addEventListener("load", () => {
-    const body = document.body;
-    console.log("🔥 JS Loaded — checking page");
 
-    if (!body.classList.contains("page-template-page-flexible-content")) {
-        console.log("❌ Not flexible page — skipping scroll fix");
-        return;
-    }
 
-    console.log("⏳ Waiting for Divi scroll hijacker...");
-
-    // Delay because Divi attaches wheel listener AFTER onload
-    setTimeout(() => {
-        console.log("🔍 Checking for Divi wheel hijackers…");
-
-        const wheels = (getEventListeners(window).wheel || []);
-
-        if (wheels.length === 0) {
-            console.log("❌ No wheel listeners found (Divi maybe not loaded yet)");
-        } else {
-            console.log(`⚠ Found ${wheels.length} wheel hijacker(s). Removing…`);
+(function($){
+    const _slick = $.fn.slick;
+    $.fn.slick = function(settings){
+        if (!this.length) {
+            console.warn("⚠ Slick skipped — no element for selector:", this.selector);
+            return this;
         }
-
-        // Remove existing hijackers
-        wheels.forEach(l => {
-            window.removeEventListener("wheel", l.listener, l.useCapture || false);
-        });
-
-        // Block ALL future wheel listeners
-        const originalAdd = window.addEventListener;
-        window.addEventListener = function (type, listener, options) {
-            if (type === "wheel") {
-                console.warn("🚫 Blocked future wheel listener:", listener);
-                return;
-            }
-            originalAdd.call(this, type, listener, options);
-        };
-
-        console.log("🎉 SCROLL FIXED — Divi scroll hijacker fully disabled.");
-    }, 700); // 700ms catches Divi late-loading scripts
-});
+        return _slick.call(this, settings);
+    };
+})(jQuery);
 
 
 // 🧹 Prevent multiple Bootstrap event bindings
@@ -190,6 +161,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 jQuery(document).ready(function($) {
+  if (!$('.logoslider').length) return;
+
   $('.logoslider').each(function() {
     const $slider = $(this);
     const rows = parseInt($slider.data('rows')) || 1; // default 1 row
@@ -226,6 +199,8 @@ jQuery(document).ready(function($) {
 });
 
 jQuery(document).ready(function ($) {
+  if (!$('.hover-slider').length) return;
+
   $('.hover-slider').slick({
     dots: false,
     arrows: false,
@@ -256,61 +231,6 @@ jQuery(document).ready(function ($) {
 });
 
 
-// ==================================================================================================
-// function moveSlickArrows() {
-//   $('.carousel').each(function () {
-//     const $carousel = $(this);
-//     const $existingWrapper = $carousel.next('.button-wrapper');
-
-//     // Reuse or create wrapper
-//     const $wrapper = $existingWrapper.length
-//       ? $existingWrapper
-//       : $('<div class="button-wrapper"></div>').insertAfter($carousel);
-
-//     // Move arrows into wrapper
-//     $carousel.find('.slick-prev, .slick-next').appendTo($wrapper);
-//   });
-// }
-
-// // Attach before initialization
-// $('.carousel').on('init reInit breakpoint', function (event, slick) {
-//   moveSlickArrows();
-// });
-
-// // Initialize Slick
-// $('.carousel').slick({
-//   slidesToShow: 3,
-//   slidesToScroll: 1,
-//   rows: 2,
-//   prevArrow:
-//     '<button type="button" class="slick-prev">swipe left to navigate</button>',
-//   nextArrow:
-//     '<button type="button" class="slick-next">swipe right to navigate</button>',
-//   responsive: [
-//     {
-//       breakpoint: 992,
-//       settings: {
-//         slidesToShow: 2
-//       }
-//     },
-//     {
-//       breakpoint: 776,
-//       settings: {
-//         slidesToShow: 1,
-//         rows: 1
-//       }
-//     }
-//   ]
-// });
-
-// // Add custom class after init
-// $('.carousel').on('init', function () {
-//   $(this)
-//     .find('.slick-slide > div:not([class])')
-//     .addClass('slick-inner');
-// });
-
-// Add class before initializing Slick
 
 function applySlickInner(e, slick) {
   const $slider = $(slick.$slider);
@@ -350,6 +270,7 @@ function moveSlickArrows(e, slick) {
 
 // Attach BEFORE init
 jQuery(document).ready(function ($) {
+  if (!$('.carousel').length) return;
   $('.carousel').each(function () {
     const $carousel = $(this);
     const rows = parseInt($carousel.data('rows')) || 2; // 👈 pull from PHP
@@ -395,6 +316,7 @@ jQuery(document).ready(function ($) {
       }
     ]
   };
+
   const case_study_slickSettings = {
     dots: true,
     arrows: false,
@@ -419,6 +341,12 @@ jQuery(document).ready(function ($) {
   if ($('.testimonial-slider').length && !$('.testimonial-slider').hasClass('slick-initialized')) {
     $('.testimonial-slider').slick(testimonial_slickSettings);
   }
+  // Initialize Testimonial Slider
+  
+
+  
+
+  
 
   // Initialize Case Study Slider
   if ($('.case-study-slider').length && !$('.case-study-slider').hasClass('slick-initialized')) {
@@ -501,4 +429,94 @@ document.querySelectorAll('.hero-video-banner').forEach(section => {
       video.pause();
     }
   });
+});
+
+
+
+jQuery(function ($) {
+
+    
+
+    /* ===========================================================
+       1) INITIALISE SLIDER (1 active card at a time)
+    ============================================================ */
+    if (!$('.two-column-card-slider').length) return;
+    const slider = $('.two-column-card-slider');
+
+    /**  ⛔ Prevent Slick init if slider not present */
+    
+    
+
+    slider.slick({
+        dots: true,
+        arrows: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: true,
+        infinite: true,
+        autoplay: false
+    });
+
+
+
+    /* ===========================================================
+       2) GLOBAL STOP ALL VIDEOS + RESET CLASSES
+    ============================================================ */
+    function pauseAll() {
+        $('.testimonial-video').each(function () {
+            this.pause();
+            $(this)
+                .closest('.video-wrapper')
+                .removeClass('playing')
+                .addClass('paused');
+        });
+    }
+
+
+
+    /* ===========================================================
+       3) CLICK HANDLER — ONLY ACTIVE SLIDE CAN PLAY
+    ============================================================ */
+    slider.on('click', '.video-wrapper', function () {
+
+        const wrap  = $(this);                          // element clicked
+        const video = wrap.find('video')[0];            // video inside
+        const slide = wrap.closest('.slick-slide');     // slide wrapper
+
+        if (!video) return;
+
+        // ❌ ignore cloned or inactive slides
+        if (!slide.hasClass('slick-current') || slide.hasClass('slick-cloned')) {
+            console.log("⛔ Blocked — Slide not active or is cloned");
+            return;
+        }
+
+        // ▶ play or ⏸ pause logic
+        if (video.paused) {
+            pauseAll();
+            video.play();
+            wrap.addClass('playing').removeClass('paused');
+            console.log("▶ PLAY");
+        } else {
+            video.pause();
+            wrap.removeClass('playing').addClass('paused');
+            console.log("⏸ PAUSE");
+        }
+    });
+
+
+
+    /* ===========================================================
+       4) SLIDE EVENTS — STOP EVERYTHING WHEN SLIDE MOVES
+    ============================================================ */
+    slider.on('beforeChange', function(e, slick, currentIndex, nextIndex){
+        console.log(`⚠ beforeChange | ${currentIndex} → ${nextIndex}`);
+        pauseAll();                                   // required behaviour
+        console.log("📌 slide changed → all paused");
+    });
+
+    slider.on('afterChange', function(e, slick, currentIndex){
+        console.log(`✅ afterChange | now active index = ${currentIndex}`);
+    });
+
 });
