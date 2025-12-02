@@ -1,1 +1,42 @@
 /* Styles for section_title_bar section */
+@use 'abstracts/variables' as *;
+
+.section-title-bar {
+  padding: 80px 0;
+
+  .section-header {
+    margin-bottom: 40px;
+
+    .section-title {
+      /* inherits typography */
+          color: $dark;
+        text-align: left;
+        font-size: $fs-50;
+        font-style: normal;
+        font-weight: 700;
+        line-height: $lh-60; /* 120% */
+
+        max-width: 494px;
+    }
+
+    .section-description {
+      max-width: 555px;
+      color: $dark;
+        text-align: right;
+        font-size: $fs-25;
+        font-style: normal;
+        font-weight: 400;
+        line-height: $lh-30; /* 120% */
+        @media (max-width: 991px) {
+          text-align: left;
+       }
+    }
+  }
+  .section-text-content{
+    text-align: center;
+    font-size: $fs-25;
+    font-style: normal;
+    font-weight: 400;
+    line-height: $lh-30;
+  }
+}

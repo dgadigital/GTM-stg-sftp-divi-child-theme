@@ -38,3 +38,24 @@ height: 114px;
   line-height: normal;
 }
 
+    .form-wrapper {
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border-radius: 10px;
+        border: none;
+        padding: 12px;
+      }
+      .wpcf7-submit,
+      input[type="submit"] {
+        background: $gray-200;
+        color: $black;
+        cursor: pointer;
+      }
+    }

@@ -1,1 +1,100 @@
 /* Styles for image_and_text section */
+@use 'abstracts/variables' as *;
+.image-and-text {
+    padding: 80px 0;
+overflow: hidden;
+  .container {
+    .section-title{
+        margin-bottom: 47px;
+        h2{
+
+            margin: auto;
+            text-align: center;
+        }
+    }
+    .content {
+      .content-inner {
+            display: flex;
+            flex-direction: row;
+            gap: 22px;
+            @media (max-width: 992px){
+                  flex-direction: column;              
+            }
+            .image-content-wrapper{
+                flex: 0 0 400px;
+                aspect-ratio: 1 / 1;
+                max-width: 400px;
+                overflow: hidden;
+
+                img,
+                picture.icon{
+                    width: 100%;
+                    height: auto;
+                    display: 
+                    block;
+                }
+            }
+
+        .text-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+          .text-content-wrapper-top {
+            font-size: $fs-15;
+            font-style: normal;
+            font-weight: 400;
+            line-height: $lh-30;
+          }
+
+          .text-content-wrapper-bottom {
+            .name,
+            .label{
+                color: $dark;
+                font-size: $fs-23;
+                font-style: normal;
+                font-weight: 700;
+                line-height: $lh-30; /* 150% */
+            }
+            .name{
+                font-weight: 700;
+            }
+            .label {
+                font-weight: 400;
+            }
+            .details {
+                color: $dark;
+                font-size: $fs-15;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin-top: 36px;
+
+            }
+          }
+
+        }
+
+      }
+    }
+    .bottom-wysiwyg{
+        margin-top: 24px;
+        *{
+            font-size: $fs-15;
+            line-height: $lh-30;
+        }
+        ul{
+            padding: 0;
+            li{
+                display: flex;
+                gap: 10px;
+                &:before{
+                    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='26' height='26' viewBox='0 0 26 26' fill='none'%3E%3Crect width='26' height='26' fill='url(%23pattern0_596_2567)'/%3E%3Cdefs%3E%3Cpattern id='pattern0_596_2567' patternContentUnits='objectBoundingBox' width='1' height='1'%3E%3Cuse xlink:href='%23image0_596_2567' transform='scale(0.01)'/%3E%3C/pattern%3E%3Cimage id='image0_596_2567' width='100' height='100' preserveAspectRatio='none' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACv0lEQVR4nO3dMWtTURgG4LcgulUHd3Gz4qCLf0Jw9k+4FfW6+AskpP2+hIC2oNUhm4s42VFxU3ESdwcVf0DbT3ITQsEmt4nxnvfc+77wToWbfOfJyUlJywUURVEURVEURVEURVEURVFSJfq4Go4iHLthGLaqjt3J7BvpIQY4H46XYTgKR7S6Vq7BXnSxng7D8Dn5QjhZDR+ToJQ7I/XwTlrD8/rPDL1NxRyQo1rPlDA8TD60k9fwoD6Q8SeL9EM7dZ/WBzL+uJd64KCuYSgQJ6pAwFWBgKsCAVcFAq4KBFwVCLgqEHBVIOCqQMBVgYCrAgFXBYJVLeTbcNyddF8gnrRFBNamcwbWwvBYIJ6kmyfO2sW5cHwXiKfHmM7reCMQ58CYzPtFIF5Li8pZHbeWurZAsHoMw/Vw/BCIZ44hEHBhCARcGAIBF4ZAwIUhEHBhCARcGNmCGHaih2sxwMXo4XY4vtb6G3gPN8Lw87+8GLIDMfRn/EfW+6x3RsYgl068dgcXwvAh252RJYjhIB7hzMzrd5ZG4cDIDmTUPm7OfYzOwig8GFmCGN7FEGdXhLJJhZElyPhJvx59Izf3sQaVB336A7wxIP+OUlBiZA2yPEpBi5E9yOIoBTVGI0DGQ7yqPOgrfp7kAG8siJ9up1DvjMaB+PIoNBiNA/HFUagwGgnip0ehw2gsiFejUGI0GsRno9BiNB7Ey+7HFi5P/yp9G3fC8Cv5wrcYJCaDfgvD7+QLLhDkVYGAqwIBVwUCrgoEXBUIuCoQcFUg4KpAwFWBgKsCAVcFAq4KBFwVCFoNspN8YCev4UmdILpdhXPdrmJDN3TBvB7GFq7UBlKiGF4QDB6kfVYrRgnSxXo4PhEMH1RNdVOwYyh7evvCqIejnZEM468zpYf7Lb6x5L3azwxFURRFURRFURRFURRFURQcyx8FtQWhy7IpDgAAAABJRU5ErkJggg=='/%3E%3C/defs%3E%3C/svg%3E");
+                    height: 26px;
+                    width: 26px;
+                }
+            }
+        }
+    }
+  }
+}
