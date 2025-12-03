@@ -66,7 +66,7 @@ $bottom_btn           = get_sub_field('bottom_btn');           // link
     ]);
 
     if ($query->have_posts()) : ?>
-      <div class="carousel" data-rows="<?= esc_attr($rows); ?>">
+      <div class="carousel carousel-row-<?= esc_attr($rows); ?>" data-rows="<?= esc_attr($rows); ?>">
         <?php while ($query->have_posts()) : $query->the_post();
           $bg    = get_field('background_image');
           $icon  = get_field('icon');
@@ -116,7 +116,7 @@ $bottom_btn           = get_sub_field('bottom_btn');           // link
   // === SOURCE: MANUAL BLOCKS
   // ===================================================
   elseif ($source === 'manual' && !empty($blocks)) : ?>
-    <div class="carousel" data-rows="<?= esc_attr($rows); ?>">
+    <div class="carousel carousel-row-<?= esc_attr($rows); ?>" data-rows="<?= esc_attr($rows); ?>">
       <?php foreach ($blocks as $block) :
         $bg        = $block['background_image'];
         $icon      = $block['icon'];

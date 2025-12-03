@@ -36,6 +36,8 @@ $headline       = get_sub_field('headline');
 $tagline        = get_sub_field('tagline');
 $primary_button = get_sub_field('primary_button');
 $has_button     = is_array($primary_button) && !empty($primary_button['url']);
+$column_image          = get_sub_field('column_image');
+$form          = get_sub_field('form');
 
 // === Early exit if empty ===
 if (
@@ -88,15 +90,27 @@ $section_classes = trim('hero-video-banner section-' . $section_index . ' ' . $b
       </div>
 
       <div class="col-lg-6 col-md-12 col-12 video-control text-center">
-        <button class="video-toggle" type="button" aria-label="Toggle video">
-          <svg class="icon-play" xmlns="http://www.w3.org/2000/svg" width="44" height="72" viewBox="0 0 44 72" fill="none">
-            <path d="M43.5 35.5071L0 71.0141V0L43.5 35.5071Z" fill="white" />
-          </svg>
-          <svg class="icon-pause" xmlns="http://www.w3.org/2000/svg" width="44" height="72" viewBox="0 0 44 72" fill="none">
-            <rect x="0" width="14" height="72" fill="white" />
-            <rect x="30" width="14" height="72" fill="white" />
-          </svg>
-        </button>
+        <?php if ( empty($column_image) && empty($form) ) : ?>
+          <button class="video-toggle" type="button" aria-label="Toggle video">
+            <svg class="icon-play" xmlns="http://www.w3.org/2000/svg" width="44" height="72" viewBox="0 0 44 72" fill="none">
+              <path d="M43.5 35.5071L0 71.0141V0L43.5 35.5071Z" fill="white" />
+            </svg>
+            <svg class="icon-pause" xmlns="http://www.w3.org/2000/svg" width="44" height="72" viewBox="0 0 44 72" fill="none">
+              <rect x="0" width="14" height="72" fill="white" />
+              <rect x="30" width="14" height="72" fill="white" />
+            </svg>
+          </button>    
+        <?php endif; ?>
+
+
+        <?php if (!empty($column_image)): ?>
+            <?= wp_get_attachment_image($column_image, 'full', false, ['alt' => esc_attr($headline)]); ?>
+        <?php endif; ?>
+        <?php if (!empty($form)): ?>
+          <div class="form-wrapper">
+            <?= do_shortcode($form); ?>
+          </div>
+        <?php endif; ?>
       </div>
     </div>
   </div>

@@ -268,10 +268,15 @@ function moveSlickArrows(e, slick) {
   });
 }
 
+
+
+
+
+
 // Attach BEFORE init
 jQuery(document).ready(function ($) {
   if (!$('.carousel').length) return;
-  $('.carousel').each(function () {
+  $('.carousel-row-2').each(function () {
     const $carousel = $(this);
     const rows = parseInt($carousel.data('rows')) || 2; // 👈 pull from PHP
 
@@ -291,9 +296,39 @@ jQuery(document).ready(function ($) {
         ]
       });
   });
+  $('.carousel-row-1').each(function () {
+    const $carousel = $(this);
+    const rows = parseInt($carousel.data('rows')) || 2; // 👈 pull from PHP
+
+    $carousel.on('init reInit breakpoint setPosition', applySlickInner)
+      .on('init reInit breakpoint setPosition', moveSlickArrows)
+      .slick({
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        rows: rows, // 👈 dynamic rows
+        prevArrow:
+          '<button type="button" class="slick-prev">swipe left to navigate</button>',
+        nextArrow:
+          '<button type="button" class="slick-next">swipe right to navigate</button>',
+        responsive: [
+          { breakpoint: 992, settings: { slidesToShow: 2 } },
+          { breakpoint: 776, settings: { slidesToShow: 1, rows: 1 } }
+        ]
+      });
+  });
 });
 
-
+jQuery(function($) {
+  $('.section-card-slider').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    infinite: true,
+    arrows: false,
+    dots: false,
+    swipe: true,
+    mobileFirst: true,
+  });
+});
 
 
 // ==================================================================================================
