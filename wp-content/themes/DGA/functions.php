@@ -1,18 +1,10 @@
 <?php
-function dt_enqueue_styles() {
-    $parenthandle = 'divi-style'; 
-    $theme = wp_get_theme();
-    wp_enqueue_style( $parenthandle, get_template_directory_uri() . '/style.css', 
-        array(), // if the parent theme code has a dependency, copy it to here
-        $theme->parent()->get('Version')
-    );
-    wp_enqueue_style( 'child-style', get_stylesheet_uri(),
-        array( $parenthandle ),
-        $theme->get('Version') 
-    );
-}
-// add_action( 'wp_enqueue_scripts', 'dt_enqueue_styles' );
-add_action( 'wp_enqueue_scripts', 'dt_enqueue_styles', 999 );
+
+
+
+add_action('after_setup_theme', function () {
+    load_theme_textdomain('dga', get_template_directory() . '/languages');
+});
 
 function spt_testimonial_shortcode() {
     $query = new WP_Query(array(
@@ -80,83 +72,20 @@ function spt_testimonial_shortcode() {
 }
 add_shortcode('spt_testimonial', 'spt_testimonial_shortcode');
 
-function add_testimonial_grid_css() {
-    ?>
-    <style>
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 20px 0;
-        }
-		.star {
-			font-size: 24px;
-			color: #ccc;
-		}
 
-		.star.filled {
-			color: gold;
-		}
-        .testimonial-item {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
 
-        .testimonial-item:hover {
-            transform: translateY(-5px);
-        }
 
-        .testimonial-image img {
-            width: 100%;
-            height: 150px;
-            object-fit: contain;
-        }
-
-        .testimonial-name {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .testimonial-content {
-            font-size: 1em;
-            color: #555;
-        }
-		@media (max-width: 768px) { /* For tablets and smaller devices */
-			.testimonial-grid {
-				grid-template-columns: 1fr; /* Single column */
-			}
-		}
-    </style>
-    <?php
-}
-
-add_action('wp_footer', 'add_testimonial_grid_css');
 
 
 // ========================================================================================================================================================================================================
 
-require_once get_stylesheet_directory() . '/inc/class-custom-walker-nav.php';
-require_once get_stylesheet_directory() . '/inc/class-custom-walker-nav-mobile.php';
+require_once get_template_directory() . '/inc/class-custom-walker-nav.php';
+require_once get_template_directory() . '/inc/class-custom-walker-nav-mobile.php';
 
 // ==========================================================
 // 0. sige logo
 // ==========================================================
-function divi_child_theme_setup() {
-  add_theme_support('post-thumbnails');
-  add_theme_support('custom-logo', [
-    'height'      => 100,
-    'width'       => 400,
-    'flex-height' => true,
-    'flex-width'  => true,
-  ]);
-}
-add_action('after_setup_theme', 'divi_child_theme_setup');
+
 
 
 
@@ -166,22 +95,28 @@ add_action('after_setup_theme', 'divi_child_theme_setup');
 // ==========================================================
 add_action('wp_enqueue_scripts', function () {
     // Only load custom assets if current page uses Flexible Content template
-    if (!is_page_template('page-flexible-content.php')) {
-        return;
-    }
+    
 
     // Ensure jQuery loads
     wp_enqueue_script('jquery');
 
     // Theme URI (safe for local/dev/prod)
-$theme_uri = get_stylesheet_directory_uri();
+$theme_uri = get_template_directory_uri();
+$theme_dir  = get_template_directory();
 
+/* ABSOLUTE PATHS (server) */
+    $style_path  = $theme_dir . '/assets/css/style.min.css';
+    $script_path = $theme_dir . '/assets/js/dist/bundle.min.js';
+
+    /* PUBLIC URLS (browser) */
+    $style_url   = $theme_uri . '/assets/css/style.min.css';
+    $script_url  = $theme_uri . '/assets/js/dist/bundle.min.js';
 
     // --- Bootstrap ---
     wp_enqueue_style(
         'bootstrap-css',
         $theme_uri . '/assets/vendor/bootstrap/dist/css/bootstrap.min.css',
-        ['child-style'],
+        [],
         '5.3.8'
     );
     wp_enqueue_script(
@@ -213,91 +148,67 @@ $theme_uri = get_stylesheet_directory_uri();
         true
     );
 
-    // --- Main Compiled Theme CSS ---
-    $style_path  = get_stylesheet_directory() . '/assets/css/style.min.css';
-    $bundle_path = get_stylesheet_directory() . '/assets/js/dist/bundle.min.js';
-
+    
+// CSS
     if (file_exists($style_path)) {
         wp_enqueue_style(
-            'acf-child-style',
-            $theme_uri . '/assets/css/style.min.css',
-            ['bootstrap-css', 'slick-theme-css'],
+            'dga-style',
+            $style_url,
+            [],
             filemtime($style_path)
         );
     }
 
-    // --- Child Scripts (compiled JS bundle) ---
-    if (file_exists($bundle_path)) {
+    // JS
+    if (file_exists($script_path)) {
         wp_enqueue_script(
-            'acf-child-scripts',
-            $theme_uri . '/assets/js/dist/bundle.min.js',
-            ['jquery', 'bootstrap-js', 'slick-js'],
-            filemtime($bundle_path),
+            'dga-scripts',
+            $script_url,
+            ['jquery'],
+            filemtime($script_path),
             true
         );
     }
-
-    error_log('✅ Custom assets enqueued for Flexible Content template.');
+    
 }, 30);
 
 
 
 // Put this anywhere in functions.php (after your existing enqueue block is fine)
 add_action('wp_enqueue_scripts', function () {
-    if (!is_page_template('page-flexible-content.php')) return;
+    
 
     // If our compiled CSS is already enqueued, bump it to the very end
-    if (wp_style_is('acf-child-style', 'enqueued')) {
-        wp_dequeue_style('acf-child-style');
-        wp_enqueue_style('acf-child-style'); // re-enqueue with same src/deps/version
+    if (wp_style_is('dga-style', 'enqueued')) {
+        wp_dequeue_style('dga-style');
+        wp_enqueue_style('dga-style'); // re-enqueue with same src/deps/version
     }
 }, 998);
-// Remove Divi Customizer global CSS file from <head> on flexible pages only
-add_action('template_redirect', function () {
-    // Only run for Flexible Content template
-    if (!is_page_template('page-flexible-content.php')) {
-        return;
-    }
-
-    ob_start(function ($html) {
-        // Remove both Divi-generated CSS links from output
-        $patterns = [
-            // 1. Global Divi Customizer CSS
-            '#<link[^>]+et-cache/global/et-divi-customizer-global\.min\.css[^>]*>#i',
-
-            // 2. Dynamic per-page Divi CSS (matches any numeric folder like 227155)
-            '#<link[^>]+et-cache/\d+/et-divi-dynamic-\d+\.css[^>]*>#i',
-        ];
-
-        return preg_replace($patterns, '', $html);
-    });
-});
 
 
-// ==========================================================
-// 2. Ensure Divi’s own assets are untouched on other pages
-// ==========================================================
-// (No dequeue needed; Divi handles its own enqueues.)
+
+
+
 
 // ==========================================================
 // 3. Safety net – Force print enqueued JS in footer for ACF pages
 // ==========================================================
 add_action('wp_footer', function () {
-    if (is_page_template('page-flexible-content.php')) {
-        wp_print_scripts(['bootstrap-js', 'slick-js', 'child-scripts']);
-    }
+    
+        wp_print_scripts(['bootstrap-js', 'slick-js', 'dga-scripts']);
+    
 }, 100);
 
 // ==========================================================
 // 4. Save and Load ACF JSON for version control
 // ==========================================================
 add_filter('acf/settings/save_json', function ($path) {
-    return get_stylesheet_directory() . '/acf-json';
+    return get_template_directory() . '/acf-json';
 });
 
 add_filter('acf/settings/load_json', function ($paths) {
     unset($paths[0]);
-    $paths[] = get_stylesheet_directory() . '/acf-json';
+    $paths[] = get_template_directory() . '/acf-json';
     return $paths;
 });
 
@@ -306,10 +217,10 @@ add_filter('acf/settings/load_json', function ($paths) {
 // ==========================================================
 add_action('after_setup_theme', function () {
     register_nav_menus([
-        'left'    => __('Left Menu', 'divi-child'),
-        'right'   => __('Right Menu', 'divi-child'),
-        'primary' => __('Primary Mobile Menu', 'divi-child'),
-        'footer'  => __('Footer Menu', 'divi-child'),
+        'left'    => __('Left Menu', 'dga'),
+        'right'   => __('Right Menu', 'dga'),
+        'primary' => __('Primary Mobile Menu', 'dga'),
+        'footer'  => __('Footer Menu', 'dga'),
     ]);
 });
 
@@ -323,18 +234,7 @@ add_action('wp_loaded', function () {
     }
 });
 
-// ==========================================================
-// 7. Force ACF-created CPTs to have archives + menus
-// ==========================================================
-// add_action('acf/init', function () {
-//     add_action('wp_loaded', function () {
-//         $post_types = get_post_types(['public' => true, '_builtin' => false], 'objects');
-//         foreach ($post_types as $pt) {
-//             $pt->has_archive = true;
-//             $pt->show_in_nav_menus = true;
-//         }
-//     }, 20);
-// });
+
 
 // ==========================================================
 // 8. Debug CPT output in admin logs
@@ -350,9 +250,7 @@ add_action('admin_init', function () {
     }
 });
 
-add_action('wp_enqueue_scripts', function () {
-    error_log('✅ wp_enqueue_scripts is running for Divi Child');
-});
+
 
 // ==========================================================
 // 9. Improve logo alt attribute handling
@@ -385,10 +283,8 @@ function dga_disable_editor_for_flexible_template() {
     $post_id = isset($_GET['post']) ? (int) $_GET['post'] : (isset($_POST['post_ID']) ? (int) $_POST['post_ID'] : 0);
     if (!$post_id) return;
 
-    $template_file = get_page_template_slug($post_id);
-    if ($template_file !== 'page-flexible-content.php') {
-        return;
-    }
+    
+    
 
     // Disable Gutenberg (use Classic editor only)
     add_filter('use_block_editor_for_post', function ($use_block, $post) use ($post_id) {
@@ -406,37 +302,3 @@ function dga_disable_editor_for_flexible_template() {
     });
     
 }
-
-
-
-
-// ==========================================================================
-// Enqueue: Divi Additional Script (for default page templates)
-// ==========================================================================
-add_action('wp_enqueue_scripts', function () {
-    // Only run on pages that use the default page template
-    if (!is_page_template('default')) {
-        return;
-    }
-
-    // Ensure jQuery is available
-    wp_enqueue_script('jquery');
-
-    $theme_uri  = get_stylesheet_directory_uri();
-    $script_path = get_stylesheet_directory() . '/assets/js/divi-additional.js';
-
-    if (file_exists($script_path)) {
-        wp_enqueue_script(
-            'divi-additional',
-            $theme_uri . '/assets/js/divi-additional.js',
-            ['jquery'],
-            filemtime($script_path),
-            true // load in footer
-        );
-    }
-}, 40);
-
-
-
-
-

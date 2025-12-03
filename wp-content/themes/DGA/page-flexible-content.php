@@ -3,7 +3,7 @@
  * Template Name: Flexible Content
  */?>
 
-<?php get_header('acf'); 
+<?php get_header(); 
 $section_index = 1;
 
 
@@ -25,4 +25,4 @@ $section_index = 1;
     }
 
 
-get_footer('acf'); ?>
+get_footer(); ?>

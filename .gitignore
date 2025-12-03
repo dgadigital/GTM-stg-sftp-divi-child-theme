@@ -12,8 +12,8 @@ wp-content/*
 ### THEMES ###
 !wp-content/themes/
 wp-content/themes/*
-!wp-content/themes/divi-child/
-!wp-content/themes/divi-child/**
+!wp-content/themes/dga/
+!wp-content/themes/dga/**
 
 ### UPLOADS — Track ONLY 2025/11 ###
 !wp-content/uploads/
@@ -24,5 +24,5 @@ wp-content/uploads/2025/*
 !wp-content/uploads/2025/11/**
 
 ### EXCLUSIONS ###
-wp-content/themes/divi-child/node_modules/
+wp-content/themes/dga/node_modules/
 !.vscode/
