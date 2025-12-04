@@ -26,3 +26,9 @@ wp-content/uploads/2025/*
 ### EXCLUSIONS ###
 wp-content/themes/dga/node_modules/
 !.vscode/
+
+### INCLUDE jquery.min.js ###
+!wp-includes/
+!wp-includes/js/
+!wp-includes/js/jquery/
+!wp-includes/js/jquery/jquery.min.js
