@@ -97,8 +97,7 @@ add_action('wp_enqueue_scripts', function () {
     // Only load custom assets if current page uses Flexible Content template
     
 
-    // Ensure jQuery loads
-    wp_enqueue_script('jquery');
+
 
     // Theme URI (safe for local/dev/prod)
 $theme_uri = get_template_directory_uri();
@@ -111,6 +110,17 @@ $theme_dir  = get_template_directory();
     /* PUBLIC URLS (browser) */
     $style_url   = $theme_uri . '/assets/css/style.min.css';
     $script_url  = $theme_uri . '/assets/js/dist/bundle.min.js';
+
+
+    // Ensure jQuery loads
+wp_enqueue_script(
+    'jquery-custom',
+    $theme_uri . '/assets/js/jquery.min.js',
+    [],        // Dependencies
+    null,      // Version
+    true       // Load in footer
+);
+
 
     // --- Bootstrap ---
     wp_enqueue_style(
