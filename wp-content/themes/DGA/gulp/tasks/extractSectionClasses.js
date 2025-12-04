@@ -21,11 +21,13 @@ module.exports = function extractSectionClasses(phpFilePath, baseName) {
 
   // Find first <section ... class="...">
   const sectionMatch = noPhp.match(
-    /<section[^>]*class=["']([^"']+)["'][^>]*>/i
-  );
+  /<section[\s\S]*?class=['"]([^'"]+)['"]/i
+);
+
 
   if (!sectionMatch) {
-    return `/* Styles for ${baseName} section */\n`;
+    console.log("NO SECTION MATCH", phpFilePath);
+    return "";
   }
 
   // Get static classes from the section tag (ignore anything weird)
@@ -36,12 +38,22 @@ module.exports = function extractSectionClasses(phpFilePath, baseName) {
   const rootClass = sectionClasses[0];
 
   if (!rootClass) {
-    return `/* Styles for ${baseName} section */\n`;
+    console.log("NO ROOT CLASS", phpFilePath);
+    return "";
   }
+  console.log("sectionMatch =", sectionMatch[1]);
+  console.log("rootClass =", rootClass);
 
   // Extract only the content INSIDE the <section>...</section>
-  const sectionStartIndex = noPhp.indexOf(sectionMatch[0]);
-  const afterSectionOpen = sectionStartIndex + sectionMatch[0].length;
+  // const sectionStartIndex = noPhp.indexOf(sectionMatch[0]);
+  // const afterSectionOpen = sectionStartIndex + sectionMatch[0].length;
+
+  const sectionOpenMatch = noPhp.match(/<section[^>]*>/i);
+if (!sectionOpenMatch) return "";
+
+const sectionStartIndex = noPhp.indexOf(sectionOpenMatch[0]);
+const afterSectionOpen = sectionStartIndex + sectionOpenMatch[0].length;
+
   const rest = noPhp.slice(afterSectionOpen);
 
   const sectionCloseIndex = rest.search(/<\/section\s*>/i);
@@ -56,7 +68,7 @@ module.exports = function extractSectionClasses(phpFilePath, baseName) {
   // Render SCSS from the tree
   const scss = renderScss(rootNode, 0);
 
-  return `/* Styles for ${baseName} section */\n\n${scss}`;
+  return `${scss}`;
 };
 
 /**

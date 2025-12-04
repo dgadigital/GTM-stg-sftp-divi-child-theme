@@ -1,3 +1,7 @@
+; geenrate fuiles and scss
+gulp generateSectionScss 
+
+
 It documents every task, its purpose, relationships, and how to use the system from scratch.
 This version is written for developers — concise but thorough, and formatted for GitHub or project handover use.
 

@@ -19,7 +19,11 @@ const checkJsFolder = require(path.join(TASKS_PATH, "checkJsFolder"));
 checkJsFolder();
 
 const generateSectionScss = require(path.join(TASKS_PATH, "generateSectionScss"));
-generateSectionScss();
+gulp.task("generateSectionScss", (done) => {
+  generateSectionScss();
+  done();
+});
+
 
 // 📌 Task: Copies Bootstrap & Slick.js from `node_modules/` to `assets/vendor/`
 const copyVendor = require(path.join(TASKS_PATH, "copyVendor"));

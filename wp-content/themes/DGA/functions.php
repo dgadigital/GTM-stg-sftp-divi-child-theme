@@ -302,3 +302,19 @@ function dga_disable_editor_for_flexible_template() {
     });
     
 }
+
+
+
+
+/**
+ * Set 9 posts per page on Case Study archive
+ */
+function dga_case_study_archive_limit( $query ) {
+
+    // Only modify on the frontend main query for your CPT archive
+    if ( !is_admin() && $query->is_main_query() && is_post_type_archive('case-study') ) {
+        $query->set( 'posts_per_page', 9 );
+    }
+
+}
+add_action( 'pre_get_posts', 'dga_case_study_archive_limit' );

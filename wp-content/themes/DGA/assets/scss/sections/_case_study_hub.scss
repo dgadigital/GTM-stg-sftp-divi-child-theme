@@ -1,1 +1,53 @@
-/* Styles for case_study_hub section */
+.case-study-hub {
+  padding-top: 45px;
+  padding-bottom: 145px;
+  .content-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 56px;
+      .section-title {
+        text-align: center;
+      }
+      .section-description {
+        text-align: center;
+      }
+    }
+    .case-study-content-wrapper {
+      .case-study-items {
+        .case-study-class {
+          padding: 30px;
+          .logo-wrapper {
+            height: 111px;
+            width: 100%;
+          }
+          .excerpt-wrapper {
+            width: 100%;
+          }
+          .data-display-wrapper {
+            .data-item {
+              width: 100%;
+              color: $gray-200;
+              font-size: $fs-40;
+              font-style: normal;
+              font-weight: 700;
+              line-height: $lh-30; /* 75% */
+            }
+          }
+          .learn-more-btn {
+            width: 100%;
+          }
+        }
+      }
+      .case-study-pagination {
+      }
+    }
+  }
+}
