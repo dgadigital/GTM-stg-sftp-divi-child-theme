@@ -11,8 +11,22 @@ get_header();
     <h1><?php esc_html_e( 'Welcome to DGA Theme', 'dga' ); ?></h1>
     <p>This is the default template.</p>
    
-</section>
+<?php
 
+
+$post_type = get_post_type_object('post');
+
+echo '<pre>';
+print_r($post_type);
+echo '</pre>';
+
+
+
+
+
+?>
+
+</section>
 
 
 <?php
