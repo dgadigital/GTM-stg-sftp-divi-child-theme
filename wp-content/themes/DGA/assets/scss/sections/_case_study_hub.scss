@@ -24,16 +24,75 @@
     }
     .case-study-content-wrapper {
       .case-study-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        row-gap: 39px;
+        gap: 48px;
+        
         .case-study-class {
-          padding: 30px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 20px;
+          border-radius: 20px;
+          background: $white;
+          
+          padding: $fs-30;
+          height: 439px;
+
+
+          @media (min-width: 1020px){
+          max-width: calc(100% / 3 - 32px);  
+          }
+          @media (max-width: 1019px){
+          max-width: calc(100% / 2 - 32px);  
+          }
+          @media (max-width: 650px){
+          max-width: 100%;
+          height: fit-content;
+          }
+
           .logo-wrapper {
             height: 111px;
             width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            picture, img{
+              max-height: 100%;
+              max-width: 100%;
+              width: auto;
+              object-fit: contain;
+              display: block;
+
+            }
           }
           .excerpt-wrapper {
             width: 100%;
+            max-height: 161px;
+            
+            p{
+              color: $dark;
+              font-size: $fs-20;
+              font-style: italic;
+              font-weight: 500;
+              line-height: $lh-30; /* 150% */
+            }
           }
           .data-display-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .percentage{
+              color: $gray-200;
+              font-size: $fs-40;
+              font-style: normal;
+              font-weight: 700;
+              line-height: $lh-30; /* 75% */
+            }
             .data-item {
               width: 100%;
               color: $gray-200;
@@ -45,10 +104,49 @@
           }
           .learn-more-btn {
             width: 100%;
+            color: $gray-200;
+            font-size: $fs-20;
+            font-style: normal;
+            font-weight: 700;
+            line-height: $lh-30; /* 150% */
+            text-decoration: none;
           }
         }
       }
       .case-study-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+
+        .page-numbers{
+          width: 43px;
+          height: 44px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
+          border: 1px solid $dark;
+          background: $dark;
+          color: $white;
+          text-align: center;
+          font-size: $fs-15;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          text-decoration: none;
+          &:is(:empty){
+            display: none;
+          }
+
+          &.current{            
+            border: 1px solid $dark;
+            background: $white;
+            color: $dark;
+          }
+
+        }
       }
     }
   }
