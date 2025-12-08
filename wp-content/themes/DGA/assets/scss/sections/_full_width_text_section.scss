@@ -1,1 +1,27 @@
 /* Styles for full_width_text_section section */
+@use 'abstracts/variables' as *;
+
+.full-width-text-section {
+    padding: 60px 20px;
+    
+    .content-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+    
+        h2 {
+            font-size: $fs-40;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: $fs-15;
+        }
+    }
+
+    &.bg-white {
+        background-color: #ffffff;
+    }
+
+    &.bg-light-gray {
+        background-color: $gray-150;
+    }
+}

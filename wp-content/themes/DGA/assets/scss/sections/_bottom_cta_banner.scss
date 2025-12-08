@@ -1,0 +1,28 @@
+@use 'abstracts/variables' as *;
+
+.bottom-cta-banner {
+  padding: 60px 20px;
+  text-align: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #fff;
+
+    h2 {
+      font-size: $fs-40;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: $fs-20;
+      margin-bottom: 30px;
+    }
+    .small-bottom {
+      font-size: $fs-15;
+      margin-top: 15px;
+    }
+  }
+}
