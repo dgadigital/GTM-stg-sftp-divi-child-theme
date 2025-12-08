@@ -28,16 +28,13 @@ if (empty($section_id)) {
 // If absolutely nothing to show and no posts, bail
 global $wp_query;
 
-if (empty($section_title) && empty($section_description) && empty($wp_query->posts)) {
+if (empty($section_title) && empty($section_description)) {
     return;
 }
 
 ?>
 
-<section 
-  id="<?= esc_attr($section_id); ?>" 
-  class="case-study-hub section-<?= esc_attr($section_index); ?> <?= esc_attr(trim($section_background . ' ' . $font_color)); ?>"
->
+<section id="<?= esc_attr($section_id); ?>"   class="case-study-hub section-<?= esc_attr($section_index); ?> <?= esc_attr(trim($section_background . ' ' . $font_color)); ?>">
   <div class="container content-wrapper">
 
     <?php if (!empty($section_title) || !empty($section_description)) : ?>
@@ -58,79 +55,102 @@ if (empty($section_title) && empty($section_description) && empty($wp_query->pos
       </div>
     <?php endif; ?>
 
+<div class="case-study-content-wrapper">
 
-    <div class="case-study-content-wrapper">
+  <?php
+  // SAFER PAGED VALUE
+  $paged = max( 1, get_query_var('paged'), get_query_var('page') );
 
-<?php
-$paged = get_query_var('paged') ?: 1;
+  // ==========================
+  // CASE STUDY QUERY
+  // ==========================
+  $case_query = new WP_Query([
+    'post_type'      => 'case-study',     // ✔ CPT with hyphen
+    'posts_per_page' => 6,
+    'post_status'    => 'publish',
+    'paged'          => $paged
+  ]);
 
-$case_query = new WP_Query([
-  'post_type'      => 'case_study',
-  'posts_per_page' => 6,
-  'paged'          => $paged
-]);
+  if ($case_query->have_posts()) :
+  ?>
 
-if ($case_query->have_posts()) :
-?>
-  <div class="case-study-items">
+    <div class="case-study-items">
 
-    <?php while ($case_query->have_posts()) : $case_query->the_post(); ?>
+      <?php while ($case_query->have_posts()) : $case_query->the_post(); ?>
 
-      <div class="case-study-class">
+        <div class="case-study-class">
 
-        <div class="logo-wrapper">
-          <?php 
-          if (has_post_thumbnail()) {
-            the_post_thumbnail('medium', [
-              'alt'   => esc_attr(get_the_title()),
-              'class' => 'img-fluid'
-            ]);
-          }
-          ?>
+          <div class="logo-wrapper">
+            <?php 
+            if (has_post_thumbnail()) {
+              the_post_thumbnail('medium', [
+                'alt'   => esc_attr(get_the_title()),
+                'class' => 'img-fluid'
+              ]);
+            }
+            ?>
+          </div>
+
+          <div class="excerpt-wrapper">
+            <p><?= esc_html( wp_trim_words(get_the_excerpt(), 20) ); ?></p>
+          </div>
+
+<div class="data-display-wrapper">
+
+  <?php 
+    // Taxonomies
+    $terms = get_the_term_list(get_the_ID(), 'industry', '', ', ');
+    if ($terms && !is_wp_error($terms)) : 
+  ?>
+    <span class="data-item"><?= wp_kses_post($terms); ?></span>
+  <?php endif; ?>
+
+  <?php 
+    // ⬅️ Percentage (ACF field)
+    $percentage = get_field('percentage');
+    if (!empty($percentage)) : 
+  ?>
+    <span class="percentage"><?= esc_html($percentage); ?></span>
+  <?php endif; ?>
+
+  <a href="<?= esc_url(get_permalink()); ?>" class="learn-more-btn">Learn more</a>
+
+</div>
+
+
         </div>
 
-        <div class="excerpt-wrapper">
-          <p><?= esc_html( wp_trim_words(get_the_excerpt(), 20) ); ?></p>
-        </div>
+      <?php endwhile; ?>
 
-        <div class="data-display-wrapper">
-          <?php 
-            $terms = get_the_term_list(get_the_ID(), 'industry', '', ', ');
-            if ($terms) :
-          ?>
-            <span class="data-item"><?= wp_kses_post($terms); ?></span>
-          <?php endif; ?>
-          <a href="<?= esc_url(get_permalink()); ?>" class="learn-more-btn">Learn more</a>
-        </div>
+    </div><!-- .case-study-items -->
 
-      </div>
-
-    <?php endwhile; ?>
-
-  </div>
-
-  <div class="case-study-pagination">
-    <?= paginate_links([
+    <?php
+    // ==========================
+    // SAFE PAGINATION
+    // ==========================
+    $pagination = paginate_links([
       'total'        => $case_query->max_num_pages,
       'current'      => $paged,
       'mid_size'     => 2,
       'prev_text'    => '',
       'next_text'    => '',
       'type'         => 'plain'
-    ]); ?>
-  </div>
+    ]);
 
-<?php else : ?>
+    // Only output pagination if valid HTML exists
+    if ($pagination) :?>
+      <div class="case-study-pagination">
+        <?= wp_kses_post($pagination); ?>
+      </div>
+    <?php endif; ?>
 
-  <p>No case studies found.</p>
+  <?php endif; ?>
 
-<?php endif; ?>
-
-<?php wp_reset_postdata(); ?>
-
-
-    </div><!-- .case-study-content-wrapper -->
-
-  </div><!-- .container -->
   <?php wp_reset_postdata(); ?>
+
+</div><!-- .case-study-content-wrapper -->
+
+
+
+  </div><!-- .container -->  
 </section>
