@@ -1,1 +1,82 @@
-/* Styles for icon_row_section section */
+@use 'abstracts/variables' as *;
+
+.icon-row-section {
+  padding: 80px 0;
+
+  .section-header {
+    margin-bottom: 60px;
+
+    .section-title {
+      /* inherits typography */
+          color: $dark;
+        text-align: left;
+        font-size: $fs-50;
+        font-style: normal;
+        font-weight: 700;
+        line-height: $lh-60; /* 120% */
+        max-width: 494px;
+    }
+
+    .section-description {
+      max-width: 555px;
+      color: $dark;
+        text-align: right;
+        font-size: $fs-25;
+        font-style: normal;
+        font-weight: 400;
+        line-height: $lh-30; /* 120% */
+        @media (max-width: 991px) {
+          text-align: left;
+       }
+    }
+  }
+
+  .icons-wrapper {
+    display: flex;
+    align-items: center;
+    @media (max-width: 991px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .icon-group {
+        display: flex;
+        align-items: center;
+        padding-bottom: 20px;
+
+        .title {
+            padding-left: 20px;
+            margin: 0;
+            font-size: $fs-50;
+            font-weight: 700;
+            line-height: 45px;
+            @media (max-width: 1199px) {
+                font-size: $fs-30;
+                line-height: 30px;
+            }
+        }
+    }
+    .description {
+        text-align: center;
+    }
+  }
+
+  &.no-icon {
+    .title {
+        padding-left: 0 !important;
+    }
+
+    .description {
+        text-align: left;
+    }
+  }
+
+  .bottom-text {
+    padding-top: 60px;
+  }
+}
