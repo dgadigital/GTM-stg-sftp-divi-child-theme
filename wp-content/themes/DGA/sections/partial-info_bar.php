@@ -10,8 +10,8 @@ if (empty($items)) {
   <div class="container">
     <div class="info-bar-wrapper">
 
-      <?php foreach ($items as $item) : 
-        $icon  = $item['icon'] ?? '';
+      <?php foreach ($items as $item) :
+        $icon  = $item['icon'] ?? '';   
         $title = $item['title'] ?? '';
         $text  = $item['text'] ?? '';
       ?>
@@ -19,7 +19,7 @@ if (empty($items)) {
         <div class="item">
           <?php if (!empty($icon)) : ?>
             <div class="icon">
-              <?= wp_get_attachment_image($icon, 'full'); ?>
+              <img src="<?= esc_url($icon); ?>" alt="">
             </div>
           <?php endif; ?>
 
