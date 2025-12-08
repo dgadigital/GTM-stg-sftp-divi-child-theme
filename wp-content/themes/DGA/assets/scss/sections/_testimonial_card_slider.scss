@@ -98,18 +98,21 @@
             font-style: italic;
             font-weight: 500;
             line-height: $lh-30;
-            height: 181px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+            display: -webkit-box !important;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 6; // number of lines to show
             overflow: hidden;
-// ✅ Proper multiline ellipsis syntax
-  display: -webkit-box !important;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6; // number of lines to show
-  overflow: hidden;
-  text-overflow: ellipsis;
+            text-overflow: ellipsis;
+
+
+            p{
+              margin: 0;
+              padding: 0;
+            }
           }
 
           .bottom-card-wrapper {
