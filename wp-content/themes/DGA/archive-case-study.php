@@ -7,12 +7,14 @@ get_header();
 
 // ==========================
 // 1) FLEXIBLE CONTENT SECTIONS
-// ==========================
+// ==========================?>
+
+<?php
 
 $section_index = 1;
 
-if ( have_rows('flex_content', 'option') ) :
-    while ( have_rows('flex_content', 'option') ) :
+if ( have_rows('flex_content_case', 'option') ) :
+    while ( have_rows('flex_content_case', 'option') ) :
         the_row();
 
         $layout = get_row_layout();
