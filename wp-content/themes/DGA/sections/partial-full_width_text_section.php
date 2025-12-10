@@ -2,6 +2,7 @@
 $background_color = get_sub_field('background_color') ?: '';
 $title       = get_sub_field('title') ?: '';
 $description = get_sub_field('description') ?: '';
+$content_text_size_class = get_sub_field('content_text_size_class') ?: '';
 
 if (empty($title) && empty($description)) {
   return;
@@ -17,7 +18,10 @@ if (empty($title) && empty($description)) {
       <?php endif; ?>
 
       <?php if (!empty($description)) : ?>
-        <p><?= wp_kses_post($description); ?></p>
+        <div class="content-text-wrapper <?=  $content_text_size_class ?>">
+          <?= wp_kses_post($description); ?>
+        </div>
+        
       <?php endif; ?>
 
     </div>

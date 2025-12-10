@@ -134,6 +134,13 @@ $fs-15-max: 0.9375rem; // 15px
 $fs-15-fluid: calc(#{$fs-15-min} + (0.25rem * ((100vw - 23.4375rem) / 101.0625rem)));
 $fs-15: clamp($fs-15-min, $fs-15-fluid, $fs-15-max);
 
+// === fs-14 ===
+$fs-14-min: 0.6875rem; // 11px
+$fs-14-max: 0.875rem;  // 14px
+$fs-14-fluid: calc(#{$fs-14-min} + (0.1875rem * ((100vw - 23.4375rem) / 101.0625rem)));
+$fs-14: clamp($fs-14-min, $fs-14-fluid, $fs-14-max);
+
+
 // ==========================================
 // FLUID LINE HEIGHTS
 // Viewport range: 375px → 1992px

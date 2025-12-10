@@ -90,7 +90,7 @@ $section_classes = trim('hero-video-banner section-' . $section_index . ' ' . $b
       </div>
 
       <div class="col-lg-6 col-md-12 col-12 video-control text-center">
-        <?php if ( empty($column_image) && empty($form) ) : ?>
+        <?php if (!empty($background_video)) : ?>
           <button class="video-toggle" type="button" aria-label="Toggle video">
             <svg class="icon-play" xmlns="http://www.w3.org/2000/svg" width="44" height="72" viewBox="0 0 44 72" fill="none">
               <path d="M43.5 35.5071L0 71.0141V0L43.5 35.5071Z" fill="white" />

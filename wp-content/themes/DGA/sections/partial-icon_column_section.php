@@ -21,6 +21,7 @@ $content_source       = get_sub_field('content_source') ?: 'sectors';
 $bottom_btn           = get_sub_field('bottom_btn');
 $column_layout        = get_sub_field('column_layout');
 $exclude_post         = get_sub_field('exclude_post');
+$text_align         = get_sub_field('text_align');
 
 ?>
 
@@ -32,7 +33,7 @@ $exclude_post         = get_sub_field('exclude_post');
   <div class="container">
     <div class="section-header d-flex justify-content-between align-items-start flex-column flex-lg-row">
       <?php if (!empty($section_title)): ?>
-        <h2 class="section-title <?= $font_color ?>"><?= esc_html($section_title); ?></h2>
+        <h2 class="section-title <?= $font_color .' '.$text_align ?> "><?= esc_html($section_title); ?></h2>
       <?php endif; ?>
 
       <?php if (!empty($section_description)): ?>
@@ -177,8 +178,14 @@ $exclude_post         = get_sub_field('exclude_post');
           $block_description = $block['block_description'] ?? '';
           $page_link         = $block['page_link']['url'] ?? '';
 
-        ?>
-          <a href="<?= esc_url($page_link); ?>" class="icon-block">
+        // Determine wrapper element
+      $has_link = !empty($page_link);
+
+      // Open wrapper (a or div)
+      echo $has_link
+        ? '<a href="' . esc_url($page_link) . '" class="icon-block">'
+        : '<div class="icon-block">';
+    ?>
             <div class="icon-block-inner">
 
               <?php if (!empty($icon)): ?>
@@ -198,8 +205,11 @@ $exclude_post         = get_sub_field('exclude_post');
               </div>
 
             </div>
-          </a>
-        <?php endforeach; ?>
+          <?php
+      // Close wrapper
+      echo $has_link ? '</a>' : '</div>';
+
+    endforeach; ?>
       </div>
 
     <?php endif; ?>

@@ -3,80 +3,170 @@
 .icon-row-section {
   padding: 80px 0;
 
+  /* ============================
+     HEADER LAYOUT MODIFIERS
+     ============================ */
+
+  &.header-row {
+    .section-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      @media (max-width: 991px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  &.header-column {
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+
+      @media (min-width: 992px) {
+        flex-direction: column;
+      }
+      .section-title,
+      .section-description{
+        max-width: unset;
+        text-align: center;
+        width: 100%;
+      }
+      .section-description{
+        font-size: $fs-15;
+      }
+      
+    }
+  }
+
+  /* ============================
+     SECTION HEADER
+     ============================ */
   .section-header {
     margin-bottom: 60px;
 
     .section-title {
-      /* inherits typography */
-          color: $dark;
-        text-align: left;
-        font-size: $fs-50;
-        font-style: normal;
-        font-weight: 700;
-        line-height: $lh-60; /* 120% */
-        max-width: 494px;
+      color: $dark;
+      text-align: left;
+      font-size: $fs-50;
+      font-style: normal;
+      font-weight: 700;
+      line-height: $lh-60;
+      max-width: 494px;
     }
 
     .section-description {
       max-width: 555px;
       color: $dark;
-        text-align: right;
-        font-size: $fs-25;
-        font-style: normal;
-        font-weight: 400;
-        line-height: $lh-30; /* 120% */
-        @media (max-width: 991px) {
-          text-align: left;
-       }
+      text-align: right;
+      font-size: $fs-25;
+      font-style: normal;
+      font-weight: 400;
+      line-height: $lh-30;
+
+      @media (max-width: 991px) {
+        text-align: left;
+      }
     }
   }
 
+  /* ============================
+     ICONS WRAPPER
+     ============================ */
   .icons-wrapper {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 22px;
+
     @media (max-width: 991px) {
-        flex-direction: column;
-        align-items: flex-start;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .item {
-        padding-left: 20px;
-        padding-right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      @media (min-width: 768px) and (max-width: 992px) {
+        width: calc(50% - 15px);
+      }
+
+      @media (min-width: 991px) {
+        width: calc(33.333% - 15px);
+      }
     }
 
     .icon-group {
-        display: flex;
-        align-items: center;
-        padding-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-height: 97px;
 
-        .title {
-            padding-left: 20px;
-            margin: 0;
-            font-size: $fs-50;
-            font-weight: 700;
-            line-height: 45px;
-            @media (max-width: 1199px) {
-                font-size: $fs-30;
-                line-height: 30px;
-            }
+      .title {
+        margin: 0;
+        font-weight: 700;
+
+        &.title-large {
+          font-size: $fs-50;
+          line-height: 50px;
         }
+
+        &.title-small {
+          font-size: $fs-30;
+          line-height: normal;
+        }
+
+        @media (max-width: 1199px) {
+          font-size: $fs-30;
+          line-height: 30px;
+        }
+      }
     }
+
     .description {
-        text-align: center;
+      text-align: center;
+      font-size: $fs-14;
+      font-style: normal;
+      font-weight: 400;
+      margin: 0;
     }
   }
 
+  /* No Icon Modifier */
   &.no-icon {
+
+    .icon-group{
+      justify-content: flex-start;
+    }
     .title {
-        padding-left: 0 !important;
+      padding-left: 0 !important;
     }
 
     .description {
-        text-align: left;
+      text-align: left;
     }
   }
 
+  /* Bottom Text */
   .bottom-text {
     padding-top: 60px;
+
+    * {
+      color: $dark;
+      text-align: center;
+      font-size: $fs-14;
+      font-style: normal;
+      font-weight: 400;
+      line-height: $lh-30;
+    }
   }
 }

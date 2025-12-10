@@ -219,7 +219,7 @@ if ($video && !empty($video['url'])):
       </div>      
     </div>
 
-    <!-- <div class="container">
+    <div class="container">
     <?php if (!empty($archive_link)) : ?>
       <div class="section-button text-center mt-4">
         <a href="<?= esc_url($archive_link); ?>" class="btn btn-tertiary">
@@ -228,6 +228,6 @@ if ($video && !empty($video['url'])):
       </div>
     <?php endif; ?>
 
-  </div> -->
+  </div>
   </div>
 </section>
