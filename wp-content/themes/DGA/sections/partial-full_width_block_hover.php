@@ -22,10 +22,11 @@ $font_color       = get_sub_field('font_color');       // e.g. text-dark, text-l
 // === Section Content ===
 $section_title       = get_sub_field('section_title');
 $section_description = get_sub_field('section_description');
-$rows                = get_sub_field('rows') ?: 2;
 $source              = get_sub_field('source');
 $blocks              = get_sub_field('blocks');
 $bottom_btn           = get_sub_field('bottom_btn');           // link
+$slider_layout = get_sub_field('slider_layout') ?: '1x3';
+
 ?>
 
 <section
@@ -66,7 +67,7 @@ $bottom_btn           = get_sub_field('bottom_btn');           // link
     ]);
 
     if ($query->have_posts()) : ?>
-      <div class="carousel carousel-row-<?= esc_attr($rows); ?>" data-rows="<?= esc_attr($rows); ?>">
+      <div class="carousel" data-layout="<?= esc_attr($slider_layout); ?>">
         <?php while ($query->have_posts()) : $query->the_post();
           $bg    = get_field('background_image');
           $icon  = get_field('icon');
@@ -116,7 +117,7 @@ $bottom_btn           = get_sub_field('bottom_btn');           // link
   // === SOURCE: MANUAL BLOCKS
   // ===================================================
   elseif ($source === 'manual' && !empty($blocks)) : ?>
-    <div class="carousel carousel-row-<?= esc_attr($rows); ?>" data-rows="<?= esc_attr($rows); ?>">
+    <div class="carousel" data-layout="<?= esc_attr($slider_layout); ?>">
       <?php foreach ($blocks as $block) :
         $bg        = $block['background_image'];
         $icon      = $block['icon'];
@@ -165,9 +166,10 @@ $bottom_btn           = get_sub_field('bottom_btn');           // link
     </div><!-- /.carousel -->
   <?php endif; ?>
   <?php if (!empty($bottom_btn)): ?>
-  <div class="container">
-    <div class="section-button text-center mt-4">
-      <a href="<?= $bottom_btn['url']?>" class="btn btn-tertiary"><?= $bottom_btn['title']?></a>
+    <div class="container">
+      <div class="section-button text-center mt-4">
+        <a href="<?= $bottom_btn['url']?>" class="btn btn-tertiary"><?= $bottom_btn['title']?></a>
+      </div>
     </div>
   <?php endif; ?>
 </section>

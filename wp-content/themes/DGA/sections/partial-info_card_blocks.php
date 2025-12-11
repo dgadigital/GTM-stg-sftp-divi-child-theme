@@ -24,6 +24,8 @@ $title       = get_sub_field('title');
 $description = get_sub_field('description');
 $blocks      = get_sub_field('blocks'); // Repeater
 $button      = get_sub_field('button');
+$bottom_text      = get_sub_field('bottom_text');
+
 
 // === Early exit if all empty ===
 if (empty($title) && empty($description) && empty($blocks) && empty($button) && empty($background_image)) return;
@@ -68,7 +70,7 @@ if (empty($title) && empty($description) && empty($blocks) && empty($button) && 
 
             <div class="info-card-content">
               <?php if (!empty($heading)): ?>
-                <h3 class="fs-50"><?= ($heading); ?></h3>
+                <h3><?= ($heading); ?></h3>
               <?php endif; ?>
               <?php if (!empty($text)): ?>
                 <p><?= ($text); ?></p>
@@ -78,16 +80,22 @@ if (empty($title) && empty($description) && empty($blocks) && empty($button) && 
         <?php endforeach; ?>
       </div>
     <?php endif; ?>
-
-    <?php if (!empty($button)):
-      $btn_url    = $button['url'] ?? '';
-      $btn_title  = $button['title'] ?? '';
-      $btn_target = $button['target'] ?? '_self';
-    ?>
+    
+    
+    <?php if (!empty($bottom_text) || !empty($button)): ?>
       <div class="info-card-button">
-        <a href="<?= esc_url($btn_url); ?>" class="btn btn-primary" target="<?= esc_attr($btn_target); ?>">
-          <?= ($btn_title); ?>
-        </a>
+        <?php if (!empty($bottom_text)): ?>
+          <div class="bottom-text <?= $font_color?>"><?= wp_kses_post($bottom_text); ?></div>
+        <?php endif; ?>
+          <?php if (!empty($button)):
+          $btn_url    = $button['url'] ?? '';
+          $btn_title  = $button['title'] ?? '';
+          $btn_target = $button['target'] ?? '_self';
+        ?>
+            <a href="<?= esc_url($btn_url); ?>" class="btn btn-primary" target="<?= esc_attr($btn_target); ?>">
+              <?= ($btn_title); ?>
+            </a>
+        <?php endif; ?>
       </div>
     <?php endif; ?>
 

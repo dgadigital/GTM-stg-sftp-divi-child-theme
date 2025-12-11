@@ -22,7 +22,7 @@ $bottom_btn           = get_sub_field('bottom_btn');
 $column_layout        = get_sub_field('column_layout');
 $exclude_post         = get_sub_field('exclude_post');
 $text_align         = get_sub_field('text_align');
-
+$flex_classes = ($text_align === 'text-start') ? 'left d-flex justify-content-between align-items-start flex-column flex-lg-row' : 'center d-flex justify-content-center align-items-center flex-column flex-lg-column';
 ?>
 
 <section
@@ -31,17 +31,19 @@ $text_align         = get_sub_field('text_align');
 >
 
   <div class="container">
-    <div class="section-header d-flex justify-content-between align-items-start flex-column flex-lg-row">
-      <?php if (!empty($section_title)): ?>
-        <h2 class="section-title <?= $font_color .' '.$text_align ?> "><?= esc_html($section_title); ?></h2>
-      <?php endif; ?>
+    <?php if (!empty($section_title) || !empty($section_description)) : ?>
+      <div class="section-header <?=  $flex_classes ?>">
+        <?php if (!empty($section_title)): ?>
+          <h2 class="section-title <?= $font_color .' '.$text_align ?> "><?= esc_html($section_title); ?></h2>
+        <?php endif; ?>
 
-      <?php if (!empty($section_description)): ?>
-        <div class="section-description <?= $font_color ?>">
-          <?= wp_kses_post($section_description); ?>
-        </div>
-      <?php endif; ?>
-    </div>
+        <?php if (!empty($section_description)): ?>
+          <div class="section-description <?= $font_color ?>">
+            <?= wp_kses_post($section_description); ?>
+          </div>
+        <?php endif; ?>
+      </div>
+    <?php endif; ?>
 
     <?php if (!empty($block_wrapper_title)): ?>
       <h3 class="block-wrapper-title <?= $font_color ?>"><?= esc_html($block_wrapper_title); ?></h3>

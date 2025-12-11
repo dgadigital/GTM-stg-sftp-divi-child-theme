@@ -6,7 +6,15 @@
 
   .section-header {
     margin-bottom: 40px;
+    &.center{
+      .section-description{
+        max-width: unset;
 
+        p{
+          text-align: center;
+        }
+      }
+    }
     .section-title {
       /* inherits typography */
           color: $dark;
@@ -132,6 +140,16 @@ width: 100%;
       }
     }
   }
+
+
+  div.icon-block{
+    .icon-block-inner:hover {
+    .icon { filter: none; }
+    .block-title { color: $dark; }
+    cursor: default;
+    }
+  }
+
 
   &.three-column{
 

@@ -80,6 +80,30 @@
     border-color: $black;
   }
 }
+        &.btn-transparent {
+  color: $white;
+  text-align: center;
+  font-size: $fs-15;
+  font-style: normal;
+  font-weight: 400;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid $gray-200;
+  display: inline-block;
+  transition: all 0.3s ease;
+
+  &:active,
+            &:focus,
+            &:focus-visible,
+            &:focus-within,
+            &:hover {
+    background: transparent;
+    border-color: $white
+  }
+}
+
+
+
 
 &.social{
   display: flex;
