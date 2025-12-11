@@ -3,7 +3,7 @@
 @use 'abstracts/variables' as *;
 
 .two-column-member-repeater {
-  padding: 80px 0;
+  padding: 60px 0;
 overflow: hidden;
 
 
@@ -46,7 +46,7 @@ overflow: hidden;
 
   .member-wrapper-title {
     color: $dark;
-    font-size: $fs-40;
+    font-size: $fs-30;
     font-style: normal;
     font-weight: 700;
     line-height: $lh-60; /* 150% */
