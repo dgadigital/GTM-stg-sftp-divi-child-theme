@@ -21,7 +21,10 @@ overflow: hidden;
         font-style: normal;
         font-weight: 700;
         line-height: $lh-60; /* 120% */
-
+        @media (max-width: 991px) {
+          max-width: 100%;
+          text-align: center;
+        }
 
         br{
           @media (max-width: 991px) {
@@ -40,6 +43,8 @@ overflow: hidden;
         line-height: $lh-30; /* 120% */
         @media (max-width: 991px) {
           text-align: left;
+          max-width: unset;
+          text-align: center;
        }
     }
   }

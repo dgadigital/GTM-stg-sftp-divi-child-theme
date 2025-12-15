@@ -31,10 +31,11 @@
                     $location = $address['location_title'] ?? '';
                     $phone    = $address['phone'] ?? '';
                     $details  = $address['address'] ?? '';
+                    $address_map_link  = $address['address_map_link'] ?? '';
                     ?>
                     <div class="address-column">
                         <?php if ($location): ?>
-                            <div class="location-title"><?php echo esc_html($location); ?></div>
+                            <a href="<?=  $address_map_link ?>" class="location-title"><?php echo esc_html($location); ?></a>
                         <?php endif; ?>
                         <div class="address-wrapper">
                             <?php if ($phone): ?>

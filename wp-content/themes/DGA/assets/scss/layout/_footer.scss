@@ -97,6 +97,9 @@ footer {
             font-weight: 400;
             line-height: $lh-normal;
             padding: 15px 0;
+            width: 100%;
+            display: block;
+            text-decoration: none;
         }
         .address-wrapper {
             padding: 10px 0;
