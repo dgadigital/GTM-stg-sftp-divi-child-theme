@@ -172,16 +172,24 @@ padding: 60px 0;
         
 
         .image-wrapper {
-          min-height: 111px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          max-width: 378px;
+          height: 137px;
+          
+            margin: 0 auto;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              overflow: hidden;
 
           img {
-            max-height: 111px;
-            object-fit: contain;
-            margin: auto;
-            display: block;
+max-width: 100%;
+    max-height: 100%;
+
+    width: auto !important;
+    height: auto !important;
+
+    object-fit: contain;
+    display: block;
           }
         }
 
