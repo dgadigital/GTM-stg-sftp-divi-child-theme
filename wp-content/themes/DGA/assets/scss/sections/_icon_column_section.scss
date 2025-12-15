@@ -155,8 +155,8 @@ width: 100%;
 
     .icon-blocks{
       margin: auto;
-      max-width:997px;
-      justify-content: center;
+      // max-width:997px;
+      justify-content: flex-start;
 
       @media (min-width: 1200px) {
         .icon-block {

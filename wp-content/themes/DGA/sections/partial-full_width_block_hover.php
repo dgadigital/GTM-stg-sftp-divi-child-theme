@@ -143,7 +143,7 @@ $slider_layout = get_sub_field('slider_layout') ?: '1x3';
               <?php endif; ?>
 
               <?php if (!empty($title)) : ?>
-                <h3 class="section-title <?= esc_attr($font_color); ?>"><?= esc_html($title); ?></h3>
+                <h3 class="section-title"><?= esc_html($title); ?></h3>
               <?php endif; ?>
 
               <?php if (!empty($short)) : ?>
