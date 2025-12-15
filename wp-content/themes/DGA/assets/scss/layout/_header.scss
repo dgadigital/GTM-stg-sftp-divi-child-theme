@@ -56,7 +56,7 @@ nav {
       .nav-link {
         color: $white;
         font-weight: 600;
-        font-size: $fs-16;
+        font-size: $fs-14;
         padding: 10px 15px;
         text-transform: uppercase;
         transition: color 0.3s ease;
@@ -173,7 +173,20 @@ nav {
 flex: 1 1 0;
 justify-content: space-between;
 width: calc((100% - 12%) / 2);
+
+.call-btn{
+  margin-right: 20px;
+}
+
+
+}
 .navbar-right {
+
+  @media (max-width: 1025px) {
+  align-items: flex-start!important;
+  justify-content: flex-start!important;
+  flex-direction: column!important;
+  }
 
 
   .menu-right-wrapper{
@@ -191,17 +204,14 @@ width: calc((100% - 12%) / 2);
 
 }
 .navbar-right {
-  flex-direction: column;
+  
   .menu-right-wrapper{
     .navbar-nav{
       justify-content: flex-start;
     }
   }
 }
-.call-btn{
-  margin-right: 20px;
-}
-}
+
 .dropdown-toggle::after{
   display: none;
 }
@@ -218,6 +228,10 @@ width: calc((100% - 12%) / 2);
         padding-right: 5px;
       }
       
+    }
+    .dropdown-toggle{
+      display: flex;
+      margin-top: -4px;
     }
     .dropdown-item-wrapper{
       .dropdown-item{
@@ -470,7 +484,7 @@ position: absolute;
 }
 
 
-nav .nav-link {font-size:14px;}
+
 @media (min-width: 992px) and (max-width: 1464px) {
 .leadership-fullwidth-automatic-slider .members .member .member-inner .member-text-wrapper .member-text-wrapper-top .member-position {font-size:17px;}
 }
