@@ -275,48 +275,51 @@ function moveSlickArrows(e, slick) {
 
 // Attach BEFORE init
 jQuery(document).ready(function ($) {
-  if (!$('.carousel').length) return;
-  $('.carousel-row-2').each(function () {
-    const $carousel = $(this);
-    const rows = parseInt($carousel.data('rows')) || 2; // 👈 pull from PHP
+  const $carousels = $('.carousel');
+  if (!$carousels.length) return;
 
-    $carousel.on('init reInit breakpoint setPosition', applySlickInner)
-      .on('init reInit breakpoint setPosition', moveSlickArrows)
+  $carousels.each(function () {
+    const $carousel = $(this);
+    const layout = $carousel.data('layout') || '1x3';
+
+    // Parse layout (example: "2x3")
+    const [rows, cols] = layout.split('x').map(Number);
+
+    // Defaults
+    const rowsFinal = rows || 1;
+    const colsFinal = cols || 3;
+
+    // Attach slick event hooks
+    $carousel
+      .on('init reInit breakpoint setPosition', applySlickInner)   // ← HERE
+      .on('init reInit breakpoint setPosition', moveSlickArrows)  // ← HERE
       .slick({
-        slidesToShow: 3,
+        rows: rowsFinal,
+        slidesToShow: colsFinal,
         slidesToScroll: 1,
-        rows: rows, // 👈 dynamic rows
         prevArrow:
           '<button type="button" class="slick-prev">swipe left to navigate</button>',
         nextArrow:
           '<button type="button" class="slick-next">swipe right to navigate</button>',
         responsive: [
-          { breakpoint: 992, settings: { slidesToShow: 2 } },
-          { breakpoint: 776, settings: { slidesToShow: 1, rows: 1 } }
-        ]
-      });
-  });
-  $('.carousel-row-1').each(function () {
-    const $carousel = $(this);
-    const rows = parseInt($carousel.data('rows')) || 2; // 👈 pull from PHP
-
-    $carousel.on('init reInit breakpoint setPosition', applySlickInner)
-      .on('init reInit breakpoint setPosition', moveSlickArrows)
-      .slick({
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        rows: rows, // 👈 dynamic rows
-        prevArrow:
-          '<button type="button" class="slick-prev">swipe left to navigate</button>',
-        nextArrow:
-          '<button type="button" class="slick-next">swipe right to navigate</button>',
-        responsive: [
-          { breakpoint: 992, settings: { slidesToShow: 2 } },
-          { breakpoint: 776, settings: { slidesToShow: 1, rows: 1 } }
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: Math.min(colsFinal, 1),
+            }
+          },
+          {
+            breakpoint: 776,
+            settings: {
+              slidesToShow: 1,
+              rows: 1
+            }
+          }
         ]
       });
   });
 });
+
 
 jQuery(function($) {
   $('.section-card-slider').slick({

@@ -1,14 +1,15 @@
 @use 'abstracts/variables' as *;
 
 .bottom-cta-banner {
-  padding: 60px 20px;
+  padding: 60px 0px;
   text-align: center;
   background-position: center;
   background-repeat: no-repeat;
+  
   background-size: cover;
 
   .content-wrapper {
-    max-width: 800px;
+    max-width: 1224px;
     margin: 0 auto;
     color: #fff;
 

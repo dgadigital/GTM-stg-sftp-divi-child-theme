@@ -7,7 +7,8 @@
   background-position: center;
   background-repeat: no-repeat;
   text-align: center;
-  padding: 70px 0 40px 0;
+  padding: 60px 0;
+
 .info-card-content-wrapper{
     display: flex;
     flex-direction: column;
@@ -17,6 +18,8 @@
 }
   .info-card-header {
     
+    
+
     .section-title {
         color: $white;
     }
@@ -79,10 +82,10 @@
 
         p {
             color: $white;
-            font-size: $fs-20;
+            font-size: $fs-17;
             text-align: left;
             font-style: normal;
-            font-weight: 500;
+            font-weight: 300;
             line-height: 30px; /* 150% */
             margin: 0;
         }
@@ -111,5 +114,12 @@
         width: 100%;
       }
     }
+  }
+  .info-card-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
   }
 }

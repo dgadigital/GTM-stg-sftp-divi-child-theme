@@ -34,5 +34,5 @@ wp-content/themes/dga/node_modules/
 !wp-includes/js/jquery/jquery.min.js
 
 # Ignore compiled CSS output
-wp-content/themes/dga/assets/css/style.min.css
-wp-content/themes/dga/assets/css/style.min.css.map
+!wp-content/themes/dga/assets/css/style.min.css
+!wp-content/themes/dga/assets/css/style.min.css.map

@@ -3,7 +3,7 @@
 @use 'abstracts/variables' as *;
 
 .two-column-member-repeater {
-  padding: 80px 0;
+  padding: 60px 0;
 overflow: hidden;
 
 
@@ -15,12 +15,18 @@ overflow: hidden;
 
     .section-title {
       /* inherits typography */
+        max-width: 486px;
           color: $dark;
-        font-size: $fs-50;
+        font-size: $fs-40;
         font-style: normal;
         font-weight: 700;
         line-height: $lh-60; /* 120% */
+        @media (max-width: 991px) {
+          width: 100%;
+          text-align: center;
+          max-width: unset;
 
+        }
 
         br{
           @media (max-width: 991px) {
@@ -30,7 +36,7 @@ overflow: hidden;
     }
 
     .section-description {
-      max-width: 600px;
+      max-width: 582px;
       color: $dark;
         text-align: right;
         font-size: $fs-25;
@@ -39,13 +45,15 @@ overflow: hidden;
         line-height: $lh-30; /* 120% */
         @media (max-width: 991px) {
           text-align: left;
+          max-width: unset;
+          text-align: center;
        }
     }
   }
 
   .member-wrapper-title {
     color: $dark;
-    font-size: $fs-40;
+    font-size: $fs-30;
     font-style: normal;
     font-weight: 700;
     line-height: $lh-60; /* 150% */
@@ -67,9 +75,9 @@ overflow: hidden;
           }
           
             .image-wrapper{
-                flex: 0 0 400px;
+                flex: 0 0 337px;
                 aspect-ratio: 1 / 1;
-                max-width: 400px;
+                max-width: 337px;
                 overflow: hidden;
 
                 img,

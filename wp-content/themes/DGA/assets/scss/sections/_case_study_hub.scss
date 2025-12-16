@@ -1,20 +1,21 @@
 @use 'abstracts/variables' as *;
 
 .case-study-hub {
-  padding-top: 45px;
-  padding-bottom: 145px;
+padding: 60px 0;
+
+
   .content-wrapper{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 60px;
     .section-header {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 56px;
+      gap: 10px;
       .section-title {
         text-align: center;
       }

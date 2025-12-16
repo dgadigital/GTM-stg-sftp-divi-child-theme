@@ -36,6 +36,8 @@ $headline       = get_sub_field('headline');
 $tagline        = get_sub_field('tagline');
 $primary_button = get_sub_field('primary_button');
 $has_button     = is_array($primary_button) && !empty($primary_button['url']);
+$secondary_button = get_sub_field('secondary_button');
+$has_secondary_button     = is_array($secondary_button) && !empty($secondary_button['url']);
 $column_image          = get_sub_field('column_image');
 $form          = get_sub_field('form');
 
@@ -77,20 +79,29 @@ $section_classes = trim('hero-video-banner section-' . $section_index . ' ' . $b
         <?php if (!empty($tagline)) : ?>
           <p class="hero-tagline"><?= esc_html($tagline); ?></p>
         <?php endif; ?>
-
-        <?php if ($has_button) : ?>
+        <?php $show_buttons = $has_button || $has_secondary_button;?>
+        <?php if ($show_buttons) : ?>
           <div class="btn-wrapper">
-            <a href="<?= esc_url($primary_button['url']); ?>"
-              class="btn btn-primary"
-              <?php if (!empty($primary_button['target'])) echo 'target="' . esc_attr($primary_button['target']) . '"'; ?>>
-              <?= esc_html($primary_button['title']); ?>
-            </a>
+            <?php if ($has_button) : ?>
+                <a href="<?= esc_url($primary_button['url']); ?>"
+                  class="btn btn-primary"
+                  <?php if (!empty($primary_button['target'])) echo 'target="' . esc_attr($primary_button['target']) . '"'; ?>>
+                  <?= esc_html($primary_button['title']); ?>
+                </a>          
+            <?php endif; ?>
+            <?php if ($has_secondary_button) : ?>
+                <a href="<?= esc_url($secondary_button['url']); ?>"
+                  class="btn btn-transparent"
+                  <?php if (!empty($secondary_button['target'])) echo 'target="' . esc_attr($secondary_button['target']) . '"'; ?>>
+                  <?= esc_html($secondary_button['title']); ?>
+                </a>
+            <?php endif; ?>
           </div>
         <?php endif; ?>
       </div>
 
       <div class="col-lg-6 col-md-12 col-12 video-control text-center">
-        <?php if ( empty($column_image) && empty($form) ) : ?>
+        <?php if (!empty($background_video)) : ?>
           <button class="video-toggle" type="button" aria-label="Toggle video">
             <svg class="icon-play" xmlns="http://www.w3.org/2000/svg" width="44" height="72" viewBox="0 0 44 72" fill="none">
               <path d="M43.5 35.5071L0 71.0141V0L43.5 35.5071Z" fill="white" />

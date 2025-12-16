@@ -22,15 +22,19 @@ $font_color       = get_sub_field('font_color');       // e.g. text-dark, text-l
 // === Section Content ===
 $section_title       = get_sub_field('section_title');
 $section_description = get_sub_field('section_description');
-$rows                = get_sub_field('rows') ?: 2;
 $source              = get_sub_field('source');
 $blocks              = get_sub_field('blocks');
 $bottom_btn           = get_sub_field('bottom_btn');           // link
+$slider_layout = get_sub_field('slider_layout') ?: '1x3';
+$hover = get_sub_field('hover')?'hover':'no-hover';
+$pagination = get_sub_field('pagination')?'':'no-pagination';
+
+
 ?>
 
 <section
   id="<?= esc_attr($section_id); ?>"
-  class="fullwidth-block-hover section-<?= esc_attr($section_index); ?> <?= esc_attr($background_color . ' ' . $font_color); ?> <?= (!empty($section_title) || !empty($section_description)) ? 'section-padding' : ''; ?> <?= !empty($bottom_btn)?'pb-5':'';?>"
+  class="fullwidth-block-hover <?= $hover?> <?= $pagination?> section-<?= esc_attr($section_index); ?> <?= esc_attr($background_color . ' ' . $font_color); ?> <?= (!empty($section_title) || !empty($section_description)) ? 'section-padding' : ''; ?> <?= !empty($bottom_btn)?'pb-5':'';?>"
   <?php if (!empty($background_image)): ?>
     style="background-image:url('<?= esc_url($background_image['url']); ?>');"
   <?php endif; ?>
@@ -66,7 +70,7 @@ $bottom_btn           = get_sub_field('bottom_btn');           // link
     ]);
 
     if ($query->have_posts()) : ?>
-      <div class="carousel carousel-row-<?= esc_attr($rows); ?>" data-rows="<?= esc_attr($rows); ?>">
+      <div class="carousel" data-layout="<?= esc_attr($slider_layout); ?>">
         <?php while ($query->have_posts()) : $query->the_post();
           $bg    = get_field('background_image');
           $icon  = get_field('icon');
@@ -116,7 +120,7 @@ $bottom_btn           = get_sub_field('bottom_btn');           // link
   // === SOURCE: MANUAL BLOCKS
   // ===================================================
   elseif ($source === 'manual' && !empty($blocks)) : ?>
-    <div class="carousel carousel-row-<?= esc_attr($rows); ?>" data-rows="<?= esc_attr($rows); ?>">
+    <div class="carousel" data-layout="<?= esc_attr($slider_layout); ?>">
       <?php foreach ($blocks as $block) :
         $bg        = $block['background_image'];
         $icon      = $block['icon'];
@@ -124,9 +128,14 @@ $bottom_btn           = get_sub_field('bottom_btn');           // link
         $short     = $block['short_text'];
         $long      = $block['long_text'];
         $btn       = $block['button'];
+        $has_link = !empty($block['page_link']['url']);
         $page_link = $block['page_link']['url'] ?? ($btn['url'] ?? '#');
       ?>
-        <a href="<?= esc_url($page_link); ?>" class="card">
+        <?php if (($has_link)): ?>
+          <a href="<?= esc_url($page_link); ?>" class="card">
+        <?php else: ?>
+          <div class="card">
+        <?php endif; ?>
           <?php if (!empty($bg)) : ?>
             <div class="card-image">
               <img src="<?= esc_url($bg['url']); ?>" alt="<?= esc_attr($title); ?>">
@@ -142,11 +151,11 @@ $bottom_btn           = get_sub_field('bottom_btn');           // link
               <?php endif; ?>
 
               <?php if (!empty($title)) : ?>
-                <h3 class="section-title <?= esc_attr($font_color); ?>"><?= esc_html($title); ?></h3>
+                <h3 class="section-title"><?= esc_html($title); ?></h3>
               <?php endif; ?>
 
               <?php if (!empty($short)) : ?>
-                <div class="short section-description <?= esc_attr($font_color); ?>"><?= esc_html($short); ?></div>
+                <div class="short section-description text-white"><?= esc_html($short); ?></div>
               <?php endif; ?>
 
               <?php if (!empty($long)) : ?>
@@ -160,14 +169,19 @@ $bottom_btn           = get_sub_field('bottom_btn');           // link
               <?php endif; ?>
             </div>
           </div>
-        </a>
+        <?php if (($has_link)): ?>
+          </a>
+        <?php else: ?>
+          </div>
+        <?php endif; ?>
       <?php endforeach; ?>
     </div><!-- /.carousel -->
   <?php endif; ?>
   <?php if (!empty($bottom_btn)): ?>
-  <div class="container">
-    <div class="section-button text-center mt-4">
-      <a href="<?= $bottom_btn['url']?>" class="btn btn-tertiary"><?= $bottom_btn['title']?></a>
+    <div class="container">
+      <div class="section-button text-center mt-4">
+        <a href="<?= $bottom_btn['url']?>" class="btn btn-tertiary"><?= $bottom_btn['title']?></a>
+      </div>
     </div>
   <?php endif; ?>
 </section>

@@ -1,156 +1,95 @@
 <?php
 /**
- * Partial: Case Study Hub
+ * Partial: Case Study Hub (ARCHIVE SAFE)
  */
+
 $args = $args ?? [];
-$section_index = isset($args['section_index']) ? (int)$args['section_index'] : 0;
+$section_index = $args['section_index'] ?? 0;
 
+// Archive-safe section ID
+$section_id = 'case-study-hub-' . $section_index;
 
-
-// ============================
-// ACF SECTION SETTINGS (Seamless clone)
-// ============================
-
-$section_title       = get_sub_field('section_title') ?: '';
-$section_description = get_sub_field('section_description') ?: '';
-$section_background  = get_sub_field('section_background') ?: '';
-$font_color          = get_sub_field('font_color') ?: '';
-
-
-// === Section ID Logic ===
-$section_id = get_sub_field('section_id');
-if (empty($section_id)) {
-  $page_id    = get_the_ID();
-  $section_id = 'page_' . $page_id . '-section_' . $section_index;
+// Bail ONLY if no posts exist
+if (!have_posts()) {
+  return;
 }
-
-
-// If absolutely nothing to show and no posts, bail
-global $wp_query;
-
-if (empty($section_title) && empty($section_description)) {
-    return;
-}
-
 ?>
 
-<section id="<?= esc_attr($section_id); ?>"   class="case-study-hub section-<?= esc_attr($section_index); ?> <?= esc_attr(trim($section_background . ' ' . $font_color)); ?>">
+<section id="<?= esc_attr($section_id); ?>" class="case-study-hub text-dark bg-gray-150">
   <div class="container content-wrapper">
 
-    <?php if (!empty($section_title) || !empty($section_description)) : ?>
-      <div class="section-header">
+    <div class="section-header">
+      <h2 class="section-title">Real stories. Real coverage. Real results xtest</h2>
+      <div class="section-description">
+        Every client you see here came to us with a challenge — to grow faster, speak louder, or take control of their message. We helped them break through the noise and own their space.
+      </div>
+    </div>
 
-        <?php if (!empty($section_title)) : ?>
-          <h2 class="section-title">
-            <?= esc_html($section_title); ?>
-          </h2>
-        <?php endif; ?>
+    <div class="case-study-content-wrapper">
 
-        <?php if (!empty($section_description)) : ?>
-          <div class="section-description">
-            <?= wp_kses_post($section_description); ?>
+      <div class="case-study-items">
+
+        <?php while (have_posts()) : the_post(); ?>
+
+          <div class="case-study-class">
+
+            <div class="logo-wrapper">
+              <?php if (has_post_thumbnail()) :
+                the_post_thumbnail('medium', [
+                  'alt'   => esc_attr(get_the_title()),
+                  'class' => 'img-fluid'
+                ]);
+              endif; ?>
+            </div>
+
+            <div class="excerpt-wrapper">
+              <p><?= esc_html(wp_trim_words(get_the_excerpt(), 20)); ?></p>
+            </div>
+
+            <div class="data-display-wrapper">
+
+              <?php
+              $terms = get_the_term_list(get_the_ID(), 'industry', '', ', ');
+              if ($terms && !is_wp_error($terms)) :
+              ?>
+                <span class="data-item"><?= wp_kses_post($terms); ?></span>
+              <?php endif; ?>
+
+              <?php if ($percentage = get_field('percentage')) : ?>
+                <span class="percentage"><?= esc_html($percentage); ?></span>
+              <?php endif; ?>
+
+              <a href="<?= esc_url(get_permalink()); ?>" class="learn-more-btn">
+                Learn more
+              </a>
+
+            </div>
+
           </div>
-        <?php endif; ?>
+
+        <?php endwhile; ?>
 
       </div>
-    <?php endif; ?>
 
-<div class="case-study-content-wrapper">
+      <?php
+      global $wp_query;
 
-  <?php
-  // SAFER PAGED VALUE
-  $paged = max( 1, get_query_var('paged'), get_query_var('page') );
+      $pagination = paginate_links([
+        'total'      => $wp_query->max_num_pages,
+        'current'    => max(1, get_query_var('paged')),
+        'mid_size'   => 2,
+        'prev_text'  => '',
+        'next_text'  => '',
+        'type'       => 'plain',
+      ]);
 
-  // ==========================
-  // CASE STUDY QUERY
-  // ==========================
-  $case_query = new WP_Query([
-    'post_type'      => 'case-study',     // ✔ CPT with hyphen
-    'posts_per_page' => 6,
-    'post_status'    => 'publish',
-    'paged'          => $paged
-  ]);
-
-  if ($case_query->have_posts()) :
-  ?>
-
-    <div class="case-study-items">
-
-      <?php while ($case_query->have_posts()) : $case_query->the_post(); ?>
-
-        <div class="case-study-class">
-
-          <div class="logo-wrapper">
-            <?php 
-            if (has_post_thumbnail()) {
-              the_post_thumbnail('medium', [
-                'alt'   => esc_attr(get_the_title()),
-                'class' => 'img-fluid'
-              ]);
-            }
-            ?>
-          </div>
-
-          <div class="excerpt-wrapper">
-            <p><?= esc_html( wp_trim_words(get_the_excerpt(), 20) ); ?></p>
-          </div>
-
-<div class="data-display-wrapper">
-
-  <?php 
-    // Taxonomies
-    $terms = get_the_term_list(get_the_ID(), 'industry', '', ', ');
-    if ($terms && !is_wp_error($terms)) : 
-  ?>
-    <span class="data-item"><?= wp_kses_post($terms); ?></span>
-  <?php endif; ?>
-
-  <?php 
-    // ⬅️ Percentage (ACF field)
-    $percentage = get_field('percentage');
-    if (!empty($percentage)) : 
-  ?>
-    <span class="percentage"><?= esc_html($percentage); ?></span>
-  <?php endif; ?>
-
-  <a href="<?= esc_url(get_permalink()); ?>" class="learn-more-btn">Learn more</a>
-
-</div>
-
-
+      if ($pagination) : ?>
+        <div class="case-study-pagination">
+          <?= wp_kses_post($pagination); ?>
         </div>
+      <?php endif; ?>
 
-      <?php endwhile; ?>
+    </div>
 
-    </div><!-- .case-study-items -->
-
-    <?php
-    // ==========================
-    // SAFE PAGINATION
-    // ==========================
-    $pagination = paginate_links([
-      'total'        => $case_query->max_num_pages,
-      'current'      => $paged,
-      'mid_size'     => 2,
-      'prev_text'    => '',
-      'next_text'    => '',
-      'type'         => 'plain'
-    ]);
-
-    // Only output pagination if valid HTML exists
-    if ($pagination) :?>
-      <div class="case-study-pagination">
-        <?= wp_kses_post($pagination); ?>
-      </div>
-    <?php endif; ?>
-
-  <?php endif; ?>
-
-  <?php wp_reset_postdata(); ?>
-
-</div><!-- .case-study-content-wrapper -->
-
-
-
-  </div><!-- .container -->  
+  </div>
 </section>

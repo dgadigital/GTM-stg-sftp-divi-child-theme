@@ -2,18 +2,23 @@
 @use 'abstracts/variables' as *;
 
 .full-width-text-section {
-    padding: 60px 20px;
+    padding: 60px 0;
     
     .content-wrapper {
-        max-width: 800px;
+        max-width: 1224px;
         margin: 0 auto;
     
         h2 {
             font-size: $fs-40;
             margin-bottom: 20px;
         }
-        p {
-            font-size: $fs-15;
+        .content-text-wrapper{
+            &.small{
+                font-size: $fs-15;
+            }
+            &.big{
+                font-size: $fs-25;
+            }
         }
     }
 

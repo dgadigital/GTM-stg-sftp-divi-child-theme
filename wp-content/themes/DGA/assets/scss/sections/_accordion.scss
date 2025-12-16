@@ -1,8 +1,7 @@
 @use 'abstracts/variables' as *;
 
 .accordion-section {
-  padding-top: 40px;
-  padding-bottom: 102px;
+  padding: 60px 0;
 
   .section-title {
     text-align: center;
@@ -34,7 +33,7 @@
 
         &::after {
           content: '↑';
-          color: $orange;
+          color: $gray-200;
           font-size: 40px;
           font-weight: 700;
           transition: transform .3s ease;

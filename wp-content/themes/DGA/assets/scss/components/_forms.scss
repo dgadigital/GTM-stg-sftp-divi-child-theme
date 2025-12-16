@@ -44,7 +44,7 @@ height: 114px;
         flex-direction: column;
         gap: 15px;
       }
-
+      
       input,
       textarea {
         width: 100%;
@@ -57,5 +57,7 @@ height: 114px;
         background: $gray-200;
         color: $black;
         cursor: pointer;
+        width: 100%;
+        border-radius: 10px;
       }
     }

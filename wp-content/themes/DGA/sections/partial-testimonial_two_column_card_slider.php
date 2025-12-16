@@ -77,6 +77,7 @@ $post_limit    = get_sub_field('post_limit') ?: -1;    // optional limit
             $client_name   = $meta['tpro_name'] ?? '';
             $logo_image    = get_the_post_thumbnail_url($post_id, 'medium'); // logo or face
             $video = get_field('testimonial_video', $post_id); // ACF source now
+            $testimonial_video_poster = get_field('testimonial_video_poster', $post_id); // ACF source now
         ?>
 
           <div class="testimonial-card">
@@ -86,11 +87,29 @@ $post_limit    = get_sub_field('post_limit') ?: -1;    // optional limit
               <div class="video-col card-row-column">
                 <div class="video-wrapper">
                   <?php if (!empty($video)): ?>
-                    <video class="testimonial-video" controls>
+
+                    <video
+                      class="testimonial-video"
+                      controls
+                      preload="metadata"
+                      <?php if (!empty($testimonial_video_poster)): ?>
+                        poster="<?= esc_url($testimonial_video_poster); ?>"
+                      <?php endif; ?>
+                    >
                       <source src="<?= esc_url($video); ?>" type="video/mp4">
                     </video>
+
+                  <?php elseif (!empty($testimonial_video_poster)): ?>
+                    <img
+                      src="<?= esc_url($testimonial_video_poster); ?>"
+                      alt="<?= esc_attr($client_name ?: 'Client testimonial'); ?>"
+                      class="testimonial-video-placeholder"
+                      loading="lazy"
+                    >
                   <?php endif; ?>
+
                 </div>
+
               </div>
 
               <!-- Right: Content -->
