@@ -1,0 +1,118 @@
+@use 'abstracts/variables' as *;
+
+.new-blogs-content {
+  
+    .new-blogs-content-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 30px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        @media (max-width: 991px) {
+                flex-wrap: wrap;
+            }
+
+        .text {
+            font-size: $fs-25;
+            width: calc(100% - 500px);
+            @media (max-width: 1199px) {
+                width: calc(100% - 280px);
+            }
+
+            @media (max-width: 991px) {
+                width: 100%;
+            }
+        }
+
+        .side-bar {
+            width: 400px;
+            max-width: 100%;
+            font-size: $fs-25;
+            @media (max-width: 1199px) {
+                width: 250px;
+                font-size: 18px;
+            }
+            @media (max-width: 991px) {
+                width: 100%;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                li {
+                    font-size: 21px;
+                    font-weight: 700;
+                    margin-bottom: 20px;
+                    @media (max-width: 1199px) {
+                       font-size: 18px;
+                    }
+                    
+                    a {
+                        text-decoration: none;
+                        color: #000;
+                        line-height: 25px;
+                    }
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            } 
+        }
+    }
+
+    .bottom-nav {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 100px;
+        @media (max-width: 767px) {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    .founder-widget {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        padding-top: 100px;
+        @media (max-width: 767px) {
+            flex-wrap: wrap;
+        }
+
+        .image {
+            width: 338px;
+            max-width: 100%;
+        }
+
+        .content {
+            width: calc(100% - 358px);
+            @media (max-width: 767px) {
+                width: 100%;
+            }
+
+            .content-text {
+                font-size: 15px;
+                line-height: 25px;
+            }
+
+            .name {
+                margin-bottom: 0;
+                font-size: 23px;
+                font-weight: 700;
+            }
+
+            .position {
+                margin-bottom: 0;
+                font-size: 23px;
+            }
+
+            .small-description {
+                font-size: 15px;
+            }
+        }
+
+    }
+}
