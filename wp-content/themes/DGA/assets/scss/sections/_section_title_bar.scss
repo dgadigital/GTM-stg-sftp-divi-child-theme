@@ -17,6 +17,11 @@
         line-height: $lh-60; /* 120% */
 
         max-width: 494px;
+        @media (max-width: 991px) {
+          max-width: unset;
+          width: 100%;
+          text-align: center  ;
+        }
     }
 
     .section-description {
@@ -28,8 +33,10 @@
         font-weight: 400;
         line-height: $lh-30; /* 120% */
         @media (max-width: 991px) {
-          text-align: left;
-       }
+          max-width: unset;
+          width: 100%;
+          text-align: center  ;
+        }
     }
   }
   .section-text-content{

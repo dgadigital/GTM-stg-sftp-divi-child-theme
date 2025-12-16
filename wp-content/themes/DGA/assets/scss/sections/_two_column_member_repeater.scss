@@ -22,8 +22,10 @@ overflow: hidden;
         font-weight: 700;
         line-height: $lh-60; /* 120% */
         @media (max-width: 991px) {
-          max-width: 100%;
+          width: 100%;
           text-align: center;
+          max-width: unset;
+
         }
 
         br{
