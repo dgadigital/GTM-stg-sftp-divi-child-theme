@@ -63,13 +63,17 @@ if (empty($items)) return;
         $long_text  = $item['long_text'] ?? '';
 
         // Skip item if no link
-        if (empty($link['url'])) continue;
+        // if (empty($link['url'])) continue;
+        $is_link = !empty($link['url']);
       ?>
       
-        <a href="<?php echo esc_url($link['url']); ?>"
-           class="card"
-           target="<?php echo esc_attr($link['target'] ?? '_self'); ?>"
-           tabindex="0">
+<?php if ($is_link) : ?>
+  <a href="<?= esc_url($link['url']); ?>"
+     class="card"
+     target="<?= esc_attr($link['target'] ?? '_self'); ?>">
+<?php else : ?>
+  <div class="card">
+<?php endif; ?>
 
           <?php if ($image) : ?>
             <div class="card-image">
@@ -135,7 +139,12 @@ if (empty($items)) return;
             </div>
           </div>
 
-        </a>
+<?php if ($is_link) : ?>
+  </a>
+<?php else : ?>
+  </div>
+<?php endif; ?>
+
 
       <?php endforeach; ?>
 

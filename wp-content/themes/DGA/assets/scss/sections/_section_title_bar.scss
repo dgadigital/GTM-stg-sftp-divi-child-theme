@@ -11,12 +11,12 @@
       /* inherits typography */
           color: $dark;
         text-align: left;
-        font-size: $fs-50;
+        font-size: $fs-40;
         font-style: normal;
         font-weight: 700;
         line-height: $lh-60; /* 120% */
 
-        max-width: 494px;
+        max-width: 495px;
         @media (max-width: 991px) {
           max-width: unset;
           width: 100%;
