@@ -72,12 +72,12 @@ width: 100%;
 }
 
 // Small desktop: 991px–1199px (3 columns)
-@media (min-width: 991px) and (max-width: 1199px) {
+@media (min-width: 991px) and (max-width: 1022px) {
   width: calc(33.333% - 15px);
 }
 
 // Large desktop: ≥1200px (4 columns)
-@media (min-width: 1200px) {
+@media (min-width: 1023px) {
   width: calc(25% - 15px);
 }
 

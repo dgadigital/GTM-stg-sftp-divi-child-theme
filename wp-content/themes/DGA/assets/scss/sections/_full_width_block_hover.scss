@@ -2,9 +2,21 @@
 
 /* Styles for full_width_block_hover section */
 .fullwidth-block-hover {
+
   /* -----------------------------------
      GLOBAL HOVER + CARD BEHAVIOR
   ----------------------------------- */
+
+.slick-list{
+      padding: 0;
+    }
+
+&.section-padding{
+  padding-top: 60px;
+}
+
+
+
 
   .carousel {
     .card {
@@ -33,7 +45,7 @@
           content: "";
           position: absolute;
           inset: 0;
-          background: rgba(35, 31, 32, 0.85);
+          background: rgba(35, 31, 32, 0.70);
           opacity: 0;
           transition: opacity 0.3s ease;
         }
@@ -119,9 +131,7 @@
         }
 
         .content-wrap {
-          h3 {
-            color: $orange;
-          }
+          
 
           .icon {
             height: 70px;
@@ -214,4 +224,48 @@
       transform: rotate(180deg);
     }
   }
+
+&.no-hover{
+    .carousel {
+    .card {
+      
+        .card-image::after {
+          opacity: 1;
+        }
+
+        .content-wrap {
+          
+
+          .icon {
+            height: 70px;
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          .long {
+            opacity: 1;
+            height: auto;
+            transform: translateY(0);
+          }
+
+          .btn-wrapper {
+            opacity: 1;
+            height: auto;
+            margin-top: 10px;
+            transform: translateY(0);
+          }
+        }
+      
+    }
+    
+  }
 }
+
+&.no-pagination{
+  .button-wrapper{
+    display: none;
+  }
+}
+}
+
+

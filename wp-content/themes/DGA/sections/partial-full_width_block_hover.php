@@ -26,12 +26,15 @@ $source              = get_sub_field('source');
 $blocks              = get_sub_field('blocks');
 $bottom_btn           = get_sub_field('bottom_btn');           // link
 $slider_layout = get_sub_field('slider_layout') ?: '1x3';
+$hover = get_sub_field('hover')?'hover':'no-hover';
+$pagination = get_sub_field('pagination')?'':'no-pagination';
+
 
 ?>
 
 <section
   id="<?= esc_attr($section_id); ?>"
-  class="fullwidth-block-hover section-<?= esc_attr($section_index); ?> <?= esc_attr($background_color . ' ' . $font_color); ?> <?= (!empty($section_title) || !empty($section_description)) ? 'section-padding' : ''; ?> <?= !empty($bottom_btn)?'pb-5':'';?>"
+  class="fullwidth-block-hover <?= $hover?> <?= $pagination?> section-<?= esc_attr($section_index); ?> <?= esc_attr($background_color . ' ' . $font_color); ?> <?= (!empty($section_title) || !empty($section_description)) ? 'section-padding' : ''; ?> <?= !empty($bottom_btn)?'pb-5':'';?>"
   <?php if (!empty($background_image)): ?>
     style="background-image:url('<?= esc_url($background_image['url']); ?>');"
   <?php endif; ?>
@@ -125,9 +128,14 @@ $slider_layout = get_sub_field('slider_layout') ?: '1x3';
         $short     = $block['short_text'];
         $long      = $block['long_text'];
         $btn       = $block['button'];
+        $has_link = !empty($block['page_link']['url']);
         $page_link = $block['page_link']['url'] ?? ($btn['url'] ?? '#');
       ?>
-        <a href="<?= esc_url($page_link); ?>" class="card">
+        <?php if (($has_link)): ?>
+          <a href="<?= esc_url($page_link); ?>" class="card">
+        <?php else: ?>
+          <div class="card">
+        <?php endif; ?>
           <?php if (!empty($bg)) : ?>
             <div class="card-image">
               <img src="<?= esc_url($bg['url']); ?>" alt="<?= esc_attr($title); ?>">
@@ -147,7 +155,7 @@ $slider_layout = get_sub_field('slider_layout') ?: '1x3';
               <?php endif; ?>
 
               <?php if (!empty($short)) : ?>
-                <div class="short section-description <?= esc_attr($font_color); ?>"><?= esc_html($short); ?></div>
+                <div class="short section-description text-white"><?= esc_html($short); ?></div>
               <?php endif; ?>
 
               <?php if (!empty($long)) : ?>
@@ -161,7 +169,11 @@ $slider_layout = get_sub_field('slider_layout') ?: '1x3';
               <?php endif; ?>
             </div>
           </div>
-        </a>
+        <?php if (($has_link)): ?>
+          </a>
+        <?php else: ?>
+          </div>
+        <?php endif; ?>
       <?php endforeach; ?>
     </div><!-- /.carousel -->
   <?php endif; ?>

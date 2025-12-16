@@ -323,7 +323,7 @@ function dga_case_study_archive_limit( $query ) {
 
     // Only modify on the frontend main query for your CPT archive
     if ( !is_admin() && $query->is_main_query() && is_post_type_archive('case-study') ) {
-        $query->set( 'posts_per_page', 9 );
+        $query->set( 'posts_per_page', 6 );
     }
 
 }
