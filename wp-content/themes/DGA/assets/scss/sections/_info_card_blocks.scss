@@ -32,9 +32,10 @@
   .info-card-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     column-gap: 45px;
     row-gap: 50px;
+    max-width: 900px;
 
     .info-card {
       position: relative;
