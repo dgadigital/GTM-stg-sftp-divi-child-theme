@@ -1,0 +1,23 @@
+{
+    "key": "ui_options_page_69326f7cef004",
+    "title": "News Archive page",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "News Archive page",
+    "menu_slug": "news-archive-page",
+    "parent_slug": "edit.php",
+    "advanced_configuration": 1,
+    "icon_url": "",
+    "menu_title": "News Archive page",
+    "position": "",
+    "redirect": false,
+    "description": "",
+    "menu_icon": [],
+    "update_button": "Update",
+    "updated_message": "Options Updated",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": 0,
+    "modified": 1764913076
+}

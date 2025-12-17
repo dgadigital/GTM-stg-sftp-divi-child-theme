@@ -39,6 +39,8 @@ if (!empty($items)) {
 }
 
 $icon_class = $has_icon ? 'with-icon' : 'no-icon';
+
+$icon_shit = $has_icon ? '' : 'align-items-center';
 ?>
 
 <section id="<?= $section_id; ?>"

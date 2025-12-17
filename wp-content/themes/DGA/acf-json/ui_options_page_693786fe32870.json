@@ -1,0 +1,23 @@
+{
+    "key": "ui_options_page_693786fe32870",
+    "title": "Sectors Archive page",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Sectors Archive page",
+    "menu_slug": "sectors-archive-page",
+    "parent_slug": "edit.php?post_type=sector",
+    "advanced_configuration": 1,
+    "icon_url": "",
+    "menu_title": "Sectors Archive page",
+    "position": "",
+    "redirect": false,
+    "description": "",
+    "menu_icon": [],
+    "update_button": "Update",
+    "updated_message": "Options Updated",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": 0,
+    "modified": 1765246787
+}

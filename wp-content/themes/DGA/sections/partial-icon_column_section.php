@@ -22,6 +22,7 @@ $bottom_btn           = get_sub_field('bottom_btn');
 $column_layout        = get_sub_field('column_layout');
 $exclude_post         = get_sub_field('exclude_post');
 $text_align         = get_sub_field('text_align');
+$bottom_text         = get_sub_field('bottom_text');
 $flex_classes = ($text_align === 'text-start') ? 'left d-flex justify-content-between align-items-start flex-column flex-lg-row' : 'center d-flex justify-content-center align-items-center flex-column flex-lg-column';
 ?>
 
@@ -217,7 +218,10 @@ $flex_classes = ($text_align === 'text-start') ? 'left d-flex justify-content-be
     <?php endif; ?>
 
   </div>
-
+  <?php if (!empty($bottom_text)): ?>	
+  	<p class="text-center text-center pb-5 pt-5"><?= $bottom_text ?></p>
+  <?php endif; ?>
+	
   <?php if (!empty($bottom_btn)): ?>
     <div class="container">
       <div class="section-button text-center mt-4">
