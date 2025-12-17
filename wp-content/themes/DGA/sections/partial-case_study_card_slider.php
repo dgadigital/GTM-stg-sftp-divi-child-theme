@@ -209,6 +209,9 @@ if ($video && !empty($video['url'])):
                     Read More
                   </a> -->
                 </div>
+
+                <a href="<?=  $permalink ?>" class="case-link">Read More ></a>
+
               </div>
             </div>
         <?php
