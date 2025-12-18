@@ -32,20 +32,20 @@ if (!have_posts()) {
         <?php while (have_posts()) : the_post(); ?>
 
           <a href="<?= esc_url(get_permalink()); ?>" class="case-study-class">
-
-            <div class="logo-wrapper">
-              <?php if (has_post_thumbnail()) :
-                the_post_thumbnail('medium', [
-                  'alt'   => esc_attr(get_the_title()),
-                  'class' => 'img-fluid'
-                ]);
-              endif; ?>
+            <div class="card-top">
+              <div class="logo-wrapper">
+                  <?php if (has_post_thumbnail()) :
+                    the_post_thumbnail('medium', [
+                      'alt'   => esc_attr(get_the_title()),
+                      'class' => 'img-fluid'
+                    ]);
+                  endif; ?>
+                </div>
+                            <div class="excerpt-wrapper">
+                  <p><?= esc_html(wp_trim_words(get_the_excerpt(), 20)); ?></p>
+                </div>
             </div>
-
-            <div class="excerpt-wrapper">
-              <p><?= esc_html(wp_trim_words(get_the_excerpt(), 20)); ?></p>
-            </div>
-
+            <div class="card-bottom">
             <div class="data-display-wrapper">
 
               <?php
@@ -62,6 +62,12 @@ if (!have_posts()) {
               <span class="learn-more-btn">Learn more</span>
 
             </div>
+            </div>
+            
+
+
+
+
 
               </a>
 

@@ -103,6 +103,9 @@
     @media (max-width: 991px) {
       flex: 1;
     }
+    @media (max-width: 425px) {
+        flex: unset;
+    }
 
 
   }

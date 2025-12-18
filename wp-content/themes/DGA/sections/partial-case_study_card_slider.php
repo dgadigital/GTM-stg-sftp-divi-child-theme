@@ -179,39 +179,40 @@ if ($video && !empty($video['url'])):
         ?>
             <div class="case-study-card">
               <div class="card-inner text-center">
-                <?php if (!empty($image_id)) : ?>
-                  <div class="image-wrapper">
-                    <?= wp_get_attachment_image($image_id, 'medium', false, [
-                      'alt'   => esc_attr(get_the_title()),
-                    ]); ?>
-                  </div>
-                <?php endif; ?>
-  
-                <div class="content">
-                  <!-- <h3 class="case-study-title"> -->
-                    <?php // echo esc_html(get_the_title()); ?>
-                  <!-- </h3> -->
-  
-                  <?php if (!empty($title)) : ?>
-                    <h3 class="title"><?= esc_html($title); ?></h3>
-                  <?php endif; ?>
-                  <?php if (!empty($excerpt)) : ?>
-                    <div class="excerpt"><?= esc_html($excerpt); ?></div>
-                  <?php endif; ?>
-  
-                  <?php if (!empty($percentage)) : ?>
-                    <div class="percentage d-none">
-                      <?= esc_html($percentage); ?>
+                <div class="card-top">
+                  <?php if (!empty($image_id)) : ?>
+                    <div class="image-wrapper">
+                      <?= wp_get_attachment_image($image_id, 'medium', false, [
+                        'alt'   => esc_attr(get_the_title()),
+                      ]); ?>
                     </div>
                   <?php endif; ?>
-  
-                  <!-- <a href="<?= esc_url($permalink); ?>" class="learn-more">
-                    Read More
-                  </a> -->
+    
+                  <div class="content">
+                    <!-- <h3 class="case-study-title"> -->
+                      <?php // echo esc_html(get_the_title()); ?>
+                    <!-- </h3> -->
+    
+                    <?php if (!empty($title)) : ?>
+                      <h3 class="title"><?= esc_html($title); ?></h3>
+                    <?php endif; ?>
+                    <?php if (!empty($excerpt)) : ?>
+                      <div class="excerpt"><?= esc_html($excerpt); ?></div>
+                    <?php endif; ?>
+    
+                    <?php if (!empty($percentage)) : ?>
+                      <div class="percentage d-none">
+                        <?= esc_html($percentage); ?>
+                      </div>
+                    <?php endif; ?>
+    
+                    <!-- <a href="<?= esc_url($permalink); ?>" class="learn-more">
+                      Read More
+                    </a> -->
+                  </div>
                 </div>
 
                 <a href="<?=  $permalink ?>" class="case-link">Read More ></a>
-
               </div>
             </div>
         <?php

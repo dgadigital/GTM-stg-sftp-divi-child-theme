@@ -32,7 +32,7 @@ $final_id      = $section_id ? $section_id : 'section-' . $section_index;
 
   <div class="container">
     <?php if ($section_title): ?>
-      <div class="section-header d-flex justify-content-between align-items-start flex-column flex-lg-row">
+      <div class="section-header d-flex justify-content-between align-items-center">
         <h2 class="section-title text-dark">
           <?php echo ($section_title); ?>
         </h2>

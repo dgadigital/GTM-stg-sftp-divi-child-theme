@@ -9,7 +9,7 @@ overflow: hidden;
 
   .section-header {
     margin-bottom: 40px;
-    @media (max-width: 991px) {
+    @media (max-width: 1024px) {
       flex-direction: column;
     }
 
@@ -21,7 +21,7 @@ overflow: hidden;
         font-style: normal;
         font-weight: 700;
         line-height: $lh-60; /* 120% */
-        @media (max-width: 991px) {
+        @media (max-width: 1024px) {
           width: 100%;
           text-align: center;
           max-width: unset;
@@ -29,7 +29,7 @@ overflow: hidden;
         }
 
         br{
-          @media (max-width: 991px) {
+          @media (max-width: 1024px) {
             display: none;
           }
         }
@@ -43,7 +43,7 @@ overflow: hidden;
         font-style: normal;
         font-weight: 400;
         line-height: $lh-30; /* 120% */
-        @media (max-width: 991px) {
+        @media (max-width: 1024px) {
           text-align: left;
           max-width: unset;
           text-align: center;

@@ -38,6 +38,11 @@ overflow: hidden;
                     display: 
                     block;
                 }
+
+
+                    @media (max-width: 425px) {
+        flex: unset;
+    }
             }
 
         .text-content-wrapper {

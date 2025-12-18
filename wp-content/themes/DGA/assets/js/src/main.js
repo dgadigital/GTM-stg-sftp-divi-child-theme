@@ -305,11 +305,12 @@ jQuery(document).ready(function ($) {
           {
             breakpoint: 992,
             settings: {
-              slidesToShow: Math.min(colsFinal, 1),
+              slidesToShow: layout === '2x3' ? 2 : Math.min(colsFinal, 1),
+              rows: layout === '2x3' ? 2 : rowsFinal
             }
           },
           {
-            breakpoint: 776,
+            breakpoint: 767,
             settings: {
               slidesToShow: 1,
               rows: 1
@@ -318,6 +319,7 @@ jQuery(document).ready(function ($) {
         ]
       });
   });
+  console.log("✅ test");
 });
 
 
@@ -361,16 +363,23 @@ jQuery(document).ready(function ($) {
     slidesToShow: 3,
     slidesToScroll: 3,
     adaptiveHeight: true,
-    infinite: true,
+    infinite: false,
     autoplay: false,
     responsive: [
       {
         breakpoint: 991,
-        settings: { slidesToShow: 2 }
+        settings: { 
+            slidesToShow: 2,
+              slidesToScroll: 2
+        }
       },
       {
         breakpoint: 767,
-        settings: { slidesToShow: 1 }
+        settings: {
+          slidesToShow: 1,
+        slidesToScroll: 1,
+        swipeToSlide: true
+        }
       }
     ]
   };
