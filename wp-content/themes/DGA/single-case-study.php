@@ -35,21 +35,7 @@ $clean_content = dga_strip_divi_content($content);
 <!--           <p class="hero-tagline">Good Talent Media helped Typsy turn local awareness into national recognition with smart PR that worked.</p> -->
       </div>
       <div class="col-lg-6 col-md-12 col-12 video-control text-center">
-		  <style>
-			  .banner-image-wrapper {
-				  position: relative;
-				  padding-bottom: 40%;
-				  width: 544px;
-				  max-width: 100%;
-			  }
-			  
-			  .banner-image-wrapper img {
-				 position: absolute;
-				  top: 50%;
-				  left: 50%;
-				  transform: translate(-50%, -50%);
-			  }
-		  </style>
+		  
 		  <div class="banner-image-wrapper">
              <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>">
 		  </div>
@@ -178,6 +164,7 @@ $clean_content = dga_strip_divi_content($content);
           $image_id  = get_post_thumbnail_id();
           $title     = get_the_title();
           $excerpt   = get_the_excerpt();
+          $permalink  = get_permalink();
       ?>
           <div class="case-study-card">
             <div class="card-inner text-center">

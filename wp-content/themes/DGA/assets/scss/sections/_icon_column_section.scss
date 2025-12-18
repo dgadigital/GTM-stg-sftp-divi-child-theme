@@ -47,6 +47,9 @@
     font-weight: 700;
     line-height: $lh-60; /* 150% */
     margin-bottom: 26px;
+            @media (max-width: 767px) {
+          text-align: center;
+        }
   }
 
   .icon-blocks {
@@ -93,7 +96,9 @@ width: 100%;
             display: flex;
             justify-content: flex-start;
             align-items: center;
-
+          @media (max-width: 767px) {
+            justify-content: center;
+          }
         }
       .icon {
         width: auto;
@@ -121,11 +126,17 @@ width: 100%;
         transition: color 0.3s ease;
         text-align: left;
         margin: 0;
+        @media (max-width: 767px) {
+          text-align: center;
+        }
       }
 
       .block-description {
         color: $dark;
         text-align: left;
+        @media (max-width: 767px) {
+          text-align: center;
+        }
       }
 
       &:hover {

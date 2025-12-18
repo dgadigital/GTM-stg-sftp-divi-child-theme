@@ -123,7 +123,7 @@ $flex_classes = ($text_align === 'text-start') ? 'left d-flex justify-content-be
         'post_type'      => 'services',
         'posts_per_page' => -1,
         'orderby'        => 'menu_order',
-        'order'          => 'ASC',
+        'order'          => 'DESC',
         'post_status'    => 'publish',
         'post__not_in'   => $exclude_ids,
       ]);
@@ -135,11 +135,12 @@ $flex_classes = ($text_align === 'text-start') ? 'left d-flex justify-content-be
 
             // Same ACF fields as sectors
             $sector_icon  = get_field('sector_icon');
+            $page_link  = get_field('page_link');
             $sector_title = get_the_title();
             $sector_desc  = get_field('sector_description') ?: get_the_excerpt();
 
           ?>
-            <a href="<?= esc_url(get_permalink()); ?>" class="icon-block">
+            <a href="<?=  $page_link['url'] ?>" class="icon-block">
               <div class="icon-block-inner">
 
                 <?php if (!empty($sector_icon)): ?>

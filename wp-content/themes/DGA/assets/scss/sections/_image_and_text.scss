@@ -6,6 +6,9 @@
 
 overflow: hidden;
   .container {
+    @media (min-width: 1023px) {
+        max-width: 940px;
+    }
     .section-title{
         margin-bottom: 47px;
         h2{

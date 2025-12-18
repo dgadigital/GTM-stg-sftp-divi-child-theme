@@ -25,14 +25,15 @@ $section_title = get_sub_field('section_title'); // Text
 $section_description = get_sub_field('section_description'); // Text
 $archive_link  = get_post_type_archive_link('testimonial');
 $bottom_btn           = get_sub_field('bottom_button');   
+$background_image           = get_sub_field('section_background');   
 ?>
 
 <section
   id="<?= esc_attr($section_id); ?>"
   class="testimonial-card-slider section-<?= esc_attr($section_index); ?> <?= esc_attr($background_color . ' ' . $font_color); ?>"
   <?php if (!empty($background_image)): ?>
-    style="background-image:url('<?= esc_url($background_image['url']); ?>');"
-  <?php endif; ?>
+  style="background-image:url('<?= esc_url(!empty($background_image['url'])); ?>');"
+<?php endif; ?>
 >
   <div class="container">
 
@@ -43,8 +44,8 @@ $bottom_btn           = get_sub_field('bottom_button');
       </div>
     <?php endif; ?>
     <?php if (!empty($section_description)) : ?>
-      <div class="section-description text-center <?= $font_color?>">
-        <h3><?= esc_html($section_description); ?></h3>
+      <div class="section-description text-center">
+        <h3 class="<?= $font_color?>"><?= esc_html($section_description); ?></h3>
       </div>
     <?php endif; ?>
 
@@ -83,7 +84,7 @@ if ($testimonials->have_posts()) :
             <?php endif;?>
             <?php if ($image_url) :?>
               <div class="logo-wrapper">
-                <img src="<?=  $image_url ?>?>" alt="Wellways Logo">
+                <img src="<?=  $image_url ?>">
               </div>
             <?php endif;?>
       </div>
@@ -103,9 +104,9 @@ endif;
   
       <div class="section-button text-center mt-4">
         <?php if (!empty($bottom_btn)): ?>  
-            <a href="<?= $bottom_btn['url']?>" class="btn btn-tertiary"><?= $bottom_btn['title']?></a>    
+            <a href="<?= $bottom_btn['url']?>" class="btn btn-primary"><?= $bottom_btn['title']?></a>    
         <?php endif; ?>
-        <a href="<?= esc_url($archive_link); ?>" class="btn btn-primary">
+        <a href="<?= esc_url($archive_link); ?>" class="btn btn-transparent">
           View All Testimonials
         </a>
       </div>

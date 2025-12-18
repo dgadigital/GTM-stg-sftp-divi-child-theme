@@ -23,6 +23,15 @@
             @media (max-width: 991px) {
                 width: 100%;
             }
+
+
+            .body-content{
+                a{
+                    text-decoration: none;
+                    color: $dark;
+                    font-weight: 700;
+                }
+            }
         }
 
         .side-bar {

@@ -31,7 +31,9 @@ endif;
 // ==========================
 
 get_template_part('sections/partial', 'case_study_hub', compact('section_index'));
-
+// ==========================
+// 3) CASE STUDY HUB SECTION
+// ==========================
 if ( have_rows('flex_content_case_bottom', 'option') ) :
     while ( have_rows('flex_content_case_bottom', 'option') ) :
         the_row();

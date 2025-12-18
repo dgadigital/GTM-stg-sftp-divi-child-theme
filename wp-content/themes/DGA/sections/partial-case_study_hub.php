@@ -31,7 +31,7 @@ if (!have_posts()) {
 
         <?php while (have_posts()) : the_post(); ?>
 
-          <div class="case-study-class">
+          <a href="<?= esc_url(get_permalink()); ?>" class="case-study-class">
 
             <div class="logo-wrapper">
               <?php if (has_post_thumbnail()) :
@@ -59,13 +59,11 @@ if (!have_posts()) {
                 <span class="percentage"><?= esc_html($percentage); ?></span>
               <?php endif; ?>
 
-              <a href="<?= esc_url(get_permalink()); ?>" class="learn-more-btn">
-                Learn more
-              </a>
+              <span class="learn-more-btn">Learn more</span>
 
             </div>
 
-          </div>
+              </a>
 
         <?php endwhile; ?>
 

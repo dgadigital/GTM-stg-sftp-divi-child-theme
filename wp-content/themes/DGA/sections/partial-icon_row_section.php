@@ -70,25 +70,29 @@ $icon_shit = $has_icon ? '' : 'align-items-center';
           if (empty($icon) && empty($ititle) && empty($text)) continue;
         ?>
           <div class="item">
-            <div class="icon-group">
-
-              <?php if (!empty($icon)) : ?>
-                <?php if (is_numeric($icon)) : ?>
-                  <?= wp_get_attachment_image($icon, 'full'); ?>
-                <?php else : ?>
-                  <img src="<?= $icon; ?>">
-                <?php endif; ?>
+            <div class="item-wrapper">
+              <?php if (!empty($icon) || !empty($ititle)) : ?>
+                <div class="icon-group">
+    
+                  <?php if (!empty($icon)) : ?>
+                    <?php if (is_numeric($icon)) : ?>
+                      <?= wp_get_attachment_image($icon, 'full'); ?>
+                    <?php else : ?>
+                      <img src="<?= $icon; ?>">
+                    <?php endif; ?>
+                  <?php endif; ?>
+    
+                  <?php if (!empty($ititle)) : ?>
+                    <p class="title title-<?= $title_size; ?>"><?= $ititle; ?></p>
+                  <?php endif; ?>
+    
+                </div>
               <?php endif; ?>
-
-              <?php if (!empty($ititle)) : ?>
-                <p class="title title-<?= $title_size; ?>"><?= $ititle; ?></p>
+              <?php if (!empty($text)) : ?>
+                <p class="description"><?= $text; ?></p>
               <?php endif; ?>
-
             </div>
-
-            <?php if (!empty($text)) : ?>
-              <p class="description"><?= $text; ?></p>
-            <?php endif; ?>
+            
 
           </div>
         <?php endforeach; ?>
