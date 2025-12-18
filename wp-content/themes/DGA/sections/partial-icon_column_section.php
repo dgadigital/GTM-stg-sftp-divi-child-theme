@@ -35,7 +35,12 @@ $flex_classes = ($text_align === 'text-start') ? 'left d-flex justify-content-be
     <?php if (!empty($section_title) || !empty($section_description)) : ?>
       <div class="section-header <?=  $flex_classes ?>">
         <?php if (!empty($section_title)): ?>
-          <h2 class="section-title <?= $font_color .' '.$text_align ?> "><?= esc_html($section_title); ?></h2>
+          <?php
+          $title_align_classes = ($text_align === 'text-start')
+            ? 'text-center text-lg-start'
+            : $text_align;
+          ?>
+          <h2 class="section-title <?= $font_color .' '.$title_align_classes ?> "><?= esc_html($section_title); ?></h2>
         <?php endif; ?>
 
         <?php if (!empty($section_description)): ?>
