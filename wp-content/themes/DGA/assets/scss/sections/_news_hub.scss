@@ -45,6 +45,7 @@ padding: 60px 0;
           background: $white;
           height: 521px;
           overflow: hidden;
+          text-decoration: none;
 
           @media (min-width: 1020px) {
             max-width: calc(100% / 3 - 32px);

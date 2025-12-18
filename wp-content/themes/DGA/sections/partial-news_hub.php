@@ -76,7 +76,7 @@ global $wp_query;
 
       <?php while ($news_query->have_posts()) : $news_query->the_post(); ?>
 
-        <div class="news-class">
+        <a href="<?php the_permalink(); ?>" class="news-class">
             <div class="logo-wrapper">
                 <?php 
                 if (has_post_thumbnail()) {
@@ -118,10 +118,10 @@ global $wp_query;
                     </div>
                 </div>
                 <div class="btn-wrapper">
-                <a href="<?php the_permalink(); ?>" class="read-more-btn">Read more</a>    
+                <span class="read-more-btn">Read more</span>    
                 </div>
             </div>
-        </div>
+        </a>
 
       <?php endwhile; ?>
 
