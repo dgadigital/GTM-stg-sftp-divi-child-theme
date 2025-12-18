@@ -165,6 +165,79 @@ $flex_classes = ($text_align === 'text-start') ? 'left d-flex justify-content-be
           <?php endwhile; wp_reset_postdata(); ?>
         </div>
       <?php endif; ?>
+	
+	  <?php
+// ==========================================================
+// OPTION 3 → Auto pull from Pages (Public Relations)
+// ==========================================================
+elseif ($content_source === 'public_relations') :
+
+  $current_id = get_the_ID();
+
+  // Build exclusion list
+  $exclude_ids = [$current_id];
+
+  if (!empty($exclude_post)) {
+    foreach ($exclude_post as $p) {
+      $exclude_ids[] = is_object($p) ? $p->ID : (int) $p;
+    }
+  }
+
+  $pages = new WP_Query([
+    'post_type'      => 'page',
+    'posts_per_page' => -1,
+    'post_status'    => 'publish',
+    'post__not_in'   => array_unique($exclude_ids),
+  ]);
+
+  if ($pages->have_posts()) :
+?>
+  <div class="row icon-blocks">
+    <?php while ($pages->have_posts()) : $pages->the_post();
+
+      $sector_icon  = get_field('sector_icon');
+      $pr_title     = get_field('pr_title');
+      $sector_desc  = get_field('sector_description');
+      $permalink    = get_permalink();
+
+      // Skip empty cards (hard safety)
+      if (empty($pr_title) && empty($sector_desc) && empty($sector_icon)) {
+        continue;
+      }
+    ?>
+      <a href="<?= esc_url($permalink); ?>" class="icon-block">
+        <div class="icon-block-inner">
+
+          <?php if (!empty($sector_icon)) : ?>
+            <div class="icon-wrapper">
+              <?= wp_get_attachment_image(
+                $sector_icon,
+                'medium',
+                false,
+                [
+                  'class' => 'icon',
+                  'alt'   => esc_attr($pr_title),
+                ]
+              ); ?>
+            </div>
+          <?php endif; ?>
+
+          <div class="block-text-wrapper">
+            <?php if (!empty($pr_title)) : ?>
+              <h4 class="block-title"><?= esc_html($pr_title); ?></h4>
+            <?php endif; ?>
+
+            <?php if (!empty($sector_desc)) : ?>
+              <div class="block-description"><?= wp_kses_post($sector_desc); ?></div>
+            <?php endif; ?>
+          </div>
+
+        </div>
+      </a>
+
+    <?php endwhile; wp_reset_postdata(); ?>
+  </div>
+<?php endif; ?>
 
 
     <?php
