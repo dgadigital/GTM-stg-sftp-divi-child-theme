@@ -160,18 +160,32 @@ padding: 60px 0;
         border-radius: 10px;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         padding: 30px;
-        min-height: 439px;
+        min-height: 406px;
         text-align: center;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         gap: 20px;
-        
-.card-top {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+        @media (max-width:768px){
+          min-height: unset;
+          justify-content: flex-start;
+        }
+
+          @media (max-width: 993px){
+            min-height: 404px;
+          }
+          @media (max-width: 882px){
+            min-height: 397px;
+          }
+          @media (max-width: 767px){
+            min-height: 383px;
+          }
+
+        .card-top {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
         .image-wrapper {
           max-width: 378px;
           height: 137px;

@@ -19,7 +19,7 @@ if (!have_posts()) {
   <div class="container content-wrapper">
 
     <div class="section-header">
-      <h2 class="section-title">Real stories. Real coverage. Real results xtest</h2>
+      <h2 class="section-title">Real stories. Real coverage. Real results</h2>
       <div class="section-description">
         Every client you see here came to us with a challenge — to grow faster, speak louder, or take control of their message. We helped them break through the noise and own their space.
       </div>

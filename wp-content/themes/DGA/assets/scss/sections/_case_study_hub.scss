@@ -37,15 +37,17 @@ padding: 60px 0;
           flex-direction: column;
           justify-content: space-between;
           border-radius: 20px;
-          background: $white;
-          
+          background: $white;          
           padding: $fs-30;
-          min-height: 428px;
+          min-height: 400px;
           text-decoration: none;
+          gap: 20px;
 
           @media (max-width: 992px){
-            min-height: 362px;
+            min-height: unset;
+            justify-content: flex-start;
           }
+          
 
           .card-top{
           display: flex;
@@ -89,6 +91,7 @@ padding: 60px 0;
               font-style: italic;
               font-weight: 500;
               line-height: $lh-30; /* 150% */
+              margin: 0;
             }
           }
           .data-display-wrapper {

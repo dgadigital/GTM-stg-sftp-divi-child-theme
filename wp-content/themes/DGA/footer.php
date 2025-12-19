@@ -73,7 +73,8 @@
             Copyright © 2025 Good Talent Media. All Rights Reserved. 
             <a href="/privacy-policy/">Privacy Policy</a> | 
             <a href="/terms-conditions/">Terms & Conditions</a> | 
-            <a href="/sitemap/">Sitemap</a>
+            <a href="/sitemap/">Sitemap</a> | 
+            <a href="/modern-slavery-statement/">Modern Slavery Statement</a>
         </div>
 
         <div class="osoac-logo-wrapper">
